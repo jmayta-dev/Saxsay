@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "recipes", "recipes", "{D40B527C-F8D2-4ECC-AC9D-D4D25E1E877C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Recipes.Domain", "recipes\MW.SAXSAY.Recipes.Domain\MW.SAXSAY.Recipes.Domain.csproj", "{21F2ED47-2ED2-4F86-96BB-BB276F395CE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Recipes.Application", "recipes\MW.SAXSAY.Recipes.Application\MW.SAXSAY.Recipes.Application.csproj", "{6A6052FE-5E09-4893-9C0C-3C08E7F162F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21F2ED47-2ED2-4F86-96BB-BB276F395CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21F2ED47-2ED2-4F86-96BB-BB276F395CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21F2ED47-2ED2-4F86-96BB-BB276F395CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21F2ED47-2ED2-4F86-96BB-BB276F395CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A6052FE-5E09-4893-9C0C-3C08E7F162F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A6052FE-5E09-4893-9C0C-3C08E7F162F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A6052FE-5E09-4893-9C0C-3C08E7F162F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A6052FE-5E09-4893-9C0C-3C08E7F162F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{21F2ED47-2ED2-4F86-96BB-BB276F395CE6} = {D40B527C-F8D2-4ECC-AC9D-D4D25E1E877C}
+		{6A6052FE-5E09-4893-9C0C-3C08E7F162F4} = {D40B527C-F8D2-4ECC-AC9D-D4D25E1E877C}
 	EndGlobalSection
 EndGlobal
