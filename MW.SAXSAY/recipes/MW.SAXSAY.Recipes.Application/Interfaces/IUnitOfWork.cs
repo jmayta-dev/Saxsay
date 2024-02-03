@@ -5,6 +5,6 @@ namespace recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 
 public interface IUnitOfWork : IDisposable
 {
-    Task CommitAsync(CancellationToken cancellationToken);
-    Task RollbackAsync();
+    Task SaveChangesAsync(CancellationToken cancellationToken);
+    ValueTask SaveChanges(CancellationToken cancellationToken);
 }
