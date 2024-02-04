@@ -6,8 +6,7 @@ public partial record PreparationTime
     //
     // constants
     //
-    private const int MaxHours = 99;
-    private const int MaxMinutes = 59;
+    private const int MAX_TOTAL_MINUTES = 5999;
     //
     // properties
     //
@@ -24,15 +23,23 @@ public partial record PreparationTime
     #endregion
 
     #region Methods
-    /// <summary>
-    /// Set preparation time
-    /// </summary>
-    /// <param name="hours">Preparation Hours</param>
-    /// <param name="minutes">Preparation Minutes</param>
-    /// <returns><see cref="PreparationTime" /></returns>
+    public static PreparationTime? Set() => Set(0, 0);
+
+    public static PreparationTime? Set(int minutes)
+    {
+        int hours = 0;
+        if (minutes > 59)
+        {
+            hours = minutes / 60;
+            minutes -= hours * 60;
+        }
+        return Set(hours, minutes);
+    }
+
     public static PreparationTime? Set(int hours, int minutes)
     {
-        if (hours > MaxHours && minutes > MaxMinutes)
+        int totalMinutes = hours * 60 + minutes;
+        if (totalMinutes > MAX_TOTAL_MINUTES)
         {
             return null;
         }
