@@ -1,0 +1,64 @@
+name: Build Develop 🏗️
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - develop
+  push:
+    branches:
+      - develop
+    paths-ignore:
+      - 'docs/**'
+jobs:
+  build-develop:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: 'zulu'
+          
+      - name: Setup .Net
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '6.0.x'
+        
+      - name: checkout "develop"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: develop
+  
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ./sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      - name: Cache SonarCloud scanner
+        id: cache-sonar-scanner
+        uses: actions/cache@v3
+        with:
+          path: ./.sonar/scanner
+          key: ${{ runner.os }}-sonar-scanner
+          restore-keys: ${{ runner.os }}-sonar-scanner
+
+      - name: Install SonarCloud scanner
+        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ./.sonar/scanner
+          dotnet tool update dotnet-sonarscanner --tool-path ./.sonar/scanner
+
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          ./.sonar/scanner/dotnet-sonarscanner begin /k:"jmayta-dev_saxsay" /o:"jmayta-personal" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet restore ./MW.SAXSAY/MW.SAXSAY.sln
+          dotnet test ./MW.SAXSAY/MW.SAXSAY.sln
+          dotnet build ./MW.SAXSAY/MW.SAXSAY.sln --no-restore
+          ./.sonar/scanner/dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
