@@ -16,7 +16,7 @@ public sealed class CreateRecipeCommandHandler
         IRecipeRepository recipeRepository, IUnitOfWork unitOfWork)
     {
         _recipeRepository = recipeRepository ?? throw new ArgumentException(nameof(recipeRepository));
-        _unitOfWork = unitOfWork ?? throw new ArgumentException(nameof(unitOfWork)); ;
+        _unitOfWork = unitOfWork ?? throw new ArgumentException(nameof(unitOfWork));
     }
     #endregion
 
@@ -24,7 +24,7 @@ public sealed class CreateRecipeCommandHandler
     public async Task<Unit> Handle(
         CreateRecipeCommand command, CancellationToken cancellationToken)
     {
-        await _unitOfWork.CommitAsync(cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
     #endregion
