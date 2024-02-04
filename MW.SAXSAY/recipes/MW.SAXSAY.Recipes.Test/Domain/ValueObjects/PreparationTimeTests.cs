@@ -10,10 +10,11 @@ public class PeparationTimeTests
     {
 
         // Arrange
+        PreparationTime? expected = PreparationTime.Set(0, 0);
         // Act
-        var timer = PreparationTime.Set();
+        PreparationTime? sut = PreparationTime.Set();
         // Assert
-        Assert.Equal(PreparationTime.Set(0, 0), timer);
+        Assert.Equal(expected, sut);
     }
 
     [Fact]
@@ -21,10 +22,11 @@ public class PeparationTimeTests
     public void Set_single_value_set_minutes()
     {
         // Arrange
+        PreparationTime? expected = PreparationTime.Set(0, 30);
         // Act
-        var timer = PreparationTime.Set(30);
+        PreparationTime? sut = PreparationTime.Set(30);
         // Assert
-        Assert.Equal(PreparationTime.Set(0, 30), timer);
+        Assert.Equal(expected, sut);
     }
 
     [Fact]
@@ -32,30 +34,31 @@ public class PeparationTimeTests
     public void Set_single_value_greater_59_set_hours_and_minutes()
     {
         // Arrange
+        PreparationTime? expected = PreparationTime.Set(1, 30);
         // Act
-        var timer = PreparationTime.Set(90);
+        PreparationTime? sut = PreparationTime.Set(90);
         // Assert
-        Assert.Equal(PreparationTime.Set(1, 30), timer);
+        Assert.Equal(expected, sut);
     }
 
     [Fact]
-    // Asignar un solo valor mayor a 99 horas y 59 minutos retorna error
+    // Asignar un solo valor mayor a 99 horas y 59 minutos retorna nulo
     public void Set_single_value_greater_5999_minutes_returns_null()
     {
         // Arrange
         // Act
-        var timer = PreparationTime.Set(6000);
+        PreparationTime? sut = PreparationTime.Set(6000);
         // Assert
-        Assert.Null(timer);
+        Assert.Null(sut);
     }
-    // Asignar dos valores (conjunto) mayor a 99 horas y 59 minutos retorna error
     [Fact]
+    // Asignar valores mayor a 99 horas y 59 minutos retorna nulo
     public void Set_values_greater_99_hours_59_minutes_returns_null()
     {
         // Arrange
         // Act
-        var timer = PreparationTime.Set(98, 121);
+        PreparationTime? sut = PreparationTime.Set(98, 121);
         // Assert
-        Assert.Null(timer);
+        Assert.Null(sut);
     }
 }
