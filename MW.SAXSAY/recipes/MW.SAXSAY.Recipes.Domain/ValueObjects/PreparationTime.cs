@@ -1,6 +1,6 @@
 namespace recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 
-public partial record PreparationTime
+public record PreparationTime
 {
     #region Constants & Properties
     //
@@ -15,6 +15,13 @@ public partial record PreparationTime
     #endregion
 
     #region Constructor
+    public PreparationTime() : this(0, 0) { }
+
+    public PreparationTime(int minutes)
+    {
+
+    }
+
     private PreparationTime(int hours, int minutes)
     {
         Hours = hours;

@@ -5,8 +5,8 @@ namespace recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 
 public interface IRecipeRepository
 {
-    ValueTask<RecipeDTO> GetRecipeByIdAsync(
+    ValueTask<RecipeDto> GetRecipeByIdAsync(
         RecipeId id, CancellationToken cancellationToken);
-    ValueTask<IEnumerable<RecipeDTO>> GetRecipeAll();
-    ValueTask<RecipeId> CreateRecipe(RecipeDTO recipeDTO);
+    ValueTask<IEnumerable<RecipeDto>> GetRecipeAll();
+    ValueTask<RecipeId> CreateRecipe(RecipeDto recipeDTO);
 }

@@ -6,7 +6,7 @@ using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 
 namespace recipes.MW.SAXSAY.Recipes.Application.Queries.GetRecipeById;
 
-public class GetRecipeByIdHandler : IRequestHandler<GetRecipeByIdQuery, RecipeDTO>
+public class GetRecipeByIdHandler : IRequestHandler<GetRecipeByIdQuery, RecipeDto>
 {
     #region Dependencies
     private readonly IRecipeRepository _recipeRepository;
@@ -20,7 +20,7 @@ public class GetRecipeByIdHandler : IRequestHandler<GetRecipeByIdQuery, RecipeDT
     #endregion
 
     #region Methods
-    public async Task<RecipeDTO> Handle(GetRecipeByIdQuery query, CancellationToken cancellationToken)
+    public async Task<RecipeDto> Handle(GetRecipeByIdQuery query, CancellationToken cancellationToken)
     {
         var recipeDTO =
             await _recipeRepository.GetRecipeByIdAsync(
@@ -31,7 +31,7 @@ public class GetRecipeByIdHandler : IRequestHandler<GetRecipeByIdQuery, RecipeDT
             throw new ArgumentException(nameof(recipeDTO));
         }
 
-        return new RecipeDTO(
+        return new RecipeDto(
             recipeDTO.Id,
             recipeDTO.PreparationTime,
             recipeDTO.Portions,

@@ -3,7 +3,7 @@ using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace recipes.MW.SAXSAY.Recipes.Application.DTOs;
 
-public record RecipeDTO
+public record RecipeDto
 {
     #region Properties
     public RecipeId? Id { get; private set; }
@@ -19,7 +19,7 @@ public record RecipeDTO
     #endregion
 
     #region Constructor
-    public RecipeDTO(
+    public RecipeDto(
         RecipeId id,
         PreparationTime preparationTime,
         int portions,

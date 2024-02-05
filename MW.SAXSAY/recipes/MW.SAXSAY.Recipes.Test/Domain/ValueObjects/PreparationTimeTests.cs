@@ -5,10 +5,21 @@ namespace recipes.MW.SAXSAY.Recipes.Test.Domain.ValueObjects;
 public class PeparationTimeTests
 {
     [Fact]
+    // No se permite creación de timer desde constructor
+    public void Cannot_create_instance_from_constructor()
+    {
+        // Arrange and Act
+        // Attempting to create a PreparationTime
+        var instance = (PreparationTime)Activator.CreateInstance(typeof(PreparationTime), true);
+
+        // Assert
+        Assert.Equal(PreparationTime.Set(0, 0), instance);
+    }
+
+    [Fact]
     // Asignar 0 cuando no se pasan parámetros
     public void Set_zero_hrs_zero_mins_when_recives_empty()
     {
-
         // Arrange
         PreparationTime? expected = PreparationTime.Set(0, 0);
         // Act

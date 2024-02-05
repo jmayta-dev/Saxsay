@@ -15,8 +15,8 @@ public sealed class CreateRecipeCommandHandler
     public CreateRecipeCommandHandler(
         IRecipeRepository recipeRepository, IUnitOfWork unitOfWork)
     {
-        _recipeRepository = recipeRepository ?? throw new ArgumentException(nameof(recipeRepository));
-        _unitOfWork = unitOfWork ?? throw new ArgumentException(nameof(unitOfWork));
+        _recipeRepository = recipeRepository ?? throw new ArgumentException($"{nameof(recipeRepository)} can't be null.");
+        _unitOfWork = unitOfWork ?? throw new ArgumentException($"{nameof(unitOfWork)} can't be null.");
     }
     #endregion
 
