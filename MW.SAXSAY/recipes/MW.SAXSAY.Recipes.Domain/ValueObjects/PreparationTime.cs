@@ -1,3 +1,5 @@
+using System.Net.NetworkInformation;
+
 namespace recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 public record PreparationTime
@@ -6,6 +8,7 @@ public record PreparationTime
     //
     // constants
     //
+    private const int DEFAULT_VALUE = 0;
     private const int MAX_TOTAL_MINUTES = 5999;
     //
     // properties
@@ -15,12 +18,7 @@ public record PreparationTime
     #endregion
 
     #region Constructor
-    public PreparationTime() : this(0, 0) { }
-
-    public PreparationTime(int minutes)
-    {
-
-    }
+    public PreparationTime() => Create(DEFAULT_VALUE);
 
     private PreparationTime(int hours, int minutes)
     {
@@ -30,9 +28,8 @@ public record PreparationTime
     #endregion
 
     #region Methods
-    public static PreparationTime? Set() => Set(0, 0);
-
-    public static PreparationTime? Set(int minutes)
+    public static PreparationTime? Create() => Create(DEFAULT_VALUE);
+    public static PreparationTime? Create(int minutes)
     {
         int hours = 0;
         if (minutes > 59)
@@ -40,10 +37,10 @@ public record PreparationTime
             hours = minutes / 60;
             minutes -= hours * 60;
         }
-        return Set(hours, minutes);
+        return Create(hours, minutes);
     }
 
-    public static PreparationTime? Set(int hours, int minutes)
+    public static PreparationTime? Create(int hours, int minutes)
     {
         int totalMinutes = hours * 60 + minutes;
         if (totalMinutes > MAX_TOTAL_MINUTES)

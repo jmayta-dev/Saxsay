@@ -4,25 +4,8 @@ namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
 
 public sealed class Recipe
 {
-    public Recipe(
-        RecipeId id,
-        PreparationTime preparationTime,
-        int portions,
-        string imageUrl,
-        string preparation,
-        double calories,
-        string commentsSuggestions)
-    {
-        Id = id;
-        PreparationTime = preparationTime;
-        Portions = portions;
-        ImageUrl = imageUrl;
-        Preparation = preparation;
-        Calories = calories;
-        CommentsSuggestions = commentsSuggestions;
-    }
-
     public RecipeId Id { get; private set; }
+    public string Name { get; set; }
     public PreparationTime PreparationTime { get; set; }
     public int Portions { get; set; }
     public string ImageUrl { get; set; }
@@ -32,4 +15,25 @@ public sealed class Recipe
     public IEnumerable<DietaryRestriction>? DietaryRestrictions { get; set; }
     public IEnumerable<RawMaterial>? Ingredients { get; set; }
     public IEnumerable<NutritionalComponent>? NutritionalInformation { get; set; }
+
+    public Recipe(
+        RecipeId id,
+        string name,
+        PreparationTime preparationTime,
+        int portions,
+        string imageUrl,
+        string preparation,
+        double calories,
+        string commentsSuggestions)
+    {
+        Id = id;
+        Name = name;
+        PreparationTime = preparationTime;
+        Portions = portions;
+        ImageUrl = imageUrl;
+        Preparation = preparation;
+        Calories = calories;
+        CommentsSuggestions = commentsSuggestions;
+    }
+
 }
