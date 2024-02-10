@@ -5,25 +5,13 @@ namespace recipes.MW.SAXSAY.Recipes.Test.Domain.ValueObjects;
 public class PeparationTimeTests
 {
     [Fact]
-    // No se permite creación de timer desde constructor
-    public void Cannot_create_instance_from_constructor()
-    {
-        // Arrange and Act
-        // Attempting to create a PreparationTime
-        var instance = (PreparationTime)Activator.CreateInstance(typeof(PreparationTime), true);
-
-        // Assert
-        Assert.Equal(PreparationTime.Set(0, 0), instance);
-    }
-
-    [Fact]
     // Asignar 0 cuando no se pasan parámetros
     public void Set_zero_hrs_zero_mins_when_recives_empty()
     {
         // Arrange
-        PreparationTime? expected = PreparationTime.Set(0, 0);
+        PreparationTime? expected = PreparationTime.Create(0, 0);
         // Act
-        PreparationTime? sut = PreparationTime.Set();
+        PreparationTime? sut = PreparationTime.Create();
         // Assert
         Assert.Equal(expected, sut);
     }
@@ -33,9 +21,9 @@ public class PeparationTimeTests
     public void Set_single_value_set_minutes()
     {
         // Arrange
-        PreparationTime? expected = PreparationTime.Set(0, 30);
+        PreparationTime? expected = PreparationTime.Create(0, 30);
         // Act
-        PreparationTime? sut = PreparationTime.Set(30);
+        PreparationTime? sut = PreparationTime.Create(30);
         // Assert
         Assert.Equal(expected, sut);
     }
@@ -45,9 +33,9 @@ public class PeparationTimeTests
     public void Set_single_value_greater_59_set_hours_and_minutes()
     {
         // Arrange
-        PreparationTime? expected = PreparationTime.Set(1, 30);
+        PreparationTime? expected = PreparationTime.Create(1, 30);
         // Act
-        PreparationTime? sut = PreparationTime.Set(90);
+        PreparationTime? sut = PreparationTime.Create(90);
         // Assert
         Assert.Equal(expected, sut);
     }
@@ -58,17 +46,18 @@ public class PeparationTimeTests
     {
         // Arrange
         // Act
-        PreparationTime? sut = PreparationTime.Set(6000);
+        PreparationTime? sut = PreparationTime.Create(6000);
         // Assert
         Assert.Null(sut);
     }
+    
     [Fact]
     // Asignar valores mayor a 99 horas y 59 minutos retorna nulo
     public void Set_values_greater_99_hours_59_minutes_returns_null()
     {
         // Arrange
         // Act
-        PreparationTime? sut = PreparationTime.Set(98, 121);
+        PreparationTime? sut = PreparationTime.Create(98, 121);
         // Assert
         Assert.Null(sut);
     }

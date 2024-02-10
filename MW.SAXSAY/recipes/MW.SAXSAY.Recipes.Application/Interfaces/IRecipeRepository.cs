@@ -3,10 +3,20 @@ using recipes.MW.SAXSAY.Recipes.Domain.Entities;
 
 namespace recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 
-public interface IRecipeRepository
+public interface IRecipeRepository: IDisposable
 {
-    ValueTask<RecipeDto> GetRecipeByIdAsync(
-        RecipeId id, CancellationToken cancellationToken);
-    ValueTask<IEnumerable<RecipeDto>> GetRecipeAll();
-    ValueTask<RecipeId> CreateRecipe(RecipeDto recipeDTO);
+    Task<IEnumerable<RecipeDto>> GetRecipeAll(
+        CancellationToken cancellationToken);
+    Task<RecipeId> CreateRecipe(
+        RecipeDto recipeDTO,
+        CancellationToken cancellationToken);
+    Task<RecipeId> DeleteRecipe(
+        RecipeDto recipeDto,
+        CancellationToken cancellationToken);
+    Task<RecipeDto> GetRecipeById(
+        RecipeId id,
+        CancellationToken cancellationToken);
+    Task<RecipeDto> UpdateRecipe(
+        RecipeDto recipeDto,
+        CancellationToken cancellationToken);
 }

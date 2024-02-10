@@ -1,10 +1,10 @@
 using MediatR;
 using recipes.MW.SAXSAY.Recipes.Domain.Entities;
 
-namespace recipes.MW.SAXSAY.Recipes.Application.Commands.CreateRecipe;
+namespace recipes.MW.SAXSAY.Recipes.Application.Commands.UpdateRecipe;
 
-public record CreateRecipeCommand(
-    string Name,
+public record UpdateRecipeCommand(
+    int Id,
     int Hours,
     int Minutes,
     int Portions,

@@ -7,6 +7,7 @@ public record RecipeDto
 {
     #region Properties
     public RecipeId? Id { get; private set; }
+    public string Name { get; set; }
     public PreparationTime PreparationTime { get; set; }
     public int Portions { get; set; }
     public string ImageUrl { get; set; }
@@ -20,7 +21,8 @@ public record RecipeDto
 
     #region Constructor
     public RecipeDto(
-        RecipeId id,
+        RecipeId? id,
+        string name,
         PreparationTime preparationTime,
         int portions,
         string imageUrl,
@@ -29,6 +31,7 @@ public record RecipeDto
         string commentsSuggestions)
     {
         Id = id;
+        Name = name;
         PreparationTime = preparationTime;
         Portions = portions;
         ImageUrl = imageUrl;
