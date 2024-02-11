@@ -13,7 +13,7 @@ public interface IUnitOfWork : IDisposable
     /// <param name="cancellationToken"><see cref="CancellationToken"/> token</param>
     /// <param name="scope"><see cref="TransactionScope"/> instance</param>
     /// <returns></returns>
-    ValueTask SaveChangesAsync(
+    Task SaveChangesAsync(
         CancellationToken cancellationToken,
         TransactionScope? scope = null);
 }

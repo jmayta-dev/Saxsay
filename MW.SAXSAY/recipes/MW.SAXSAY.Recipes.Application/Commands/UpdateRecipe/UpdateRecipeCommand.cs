@@ -1,10 +1,12 @@
 using MediatR;
+using recipes.MW.SAXSAY.Recipes.Application.DTOs;
 using recipes.MW.SAXSAY.Recipes.Domain.Entities;
 
 namespace recipes.MW.SAXSAY.Recipes.Application.Commands.UpdateRecipe;
 
 public record UpdateRecipeCommand(
     int Id,
+    string Name,
     int Hours,
     int Minutes,
     int Portions,
@@ -13,6 +15,6 @@ public record UpdateRecipeCommand(
     double Calories,
     string CommentsSuggestions,
     IEnumerable<DietaryRestriction>? DietaryRestriction,
-    IEnumerable<RawMaterial>? RawMaterials,
+    IEnumerable<Ingredient>? RawMaterials,
     IEnumerable<NutritionalComponent>? NutritionalComponents
-) : IRequest<Unit>;
+) : IRequest<RecipeDto>;

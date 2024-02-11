@@ -5,13 +5,13 @@ namespace recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 
 public interface IRecipeRepository: IDisposable
 {
-    Task<IEnumerable<RecipeDto>> GetRecipeAll(
-        CancellationToken cancellationToken);
     Task<RecipeId> CreateRecipe(
-        RecipeDto recipeDTO,
+        Recipe recipe,
         CancellationToken cancellationToken);
-    Task<RecipeId> DeleteRecipe(
+    Task<bool> DeleteRecipe(
         RecipeDto recipeDto,
+        CancellationToken cancellationToken);
+    Task<IEnumerable<RecipeDto>> GetRecipeAll(
         CancellationToken cancellationToken);
     Task<RecipeDto> GetRecipeById(
         RecipeId id,

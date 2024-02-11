@@ -8,7 +8,7 @@ using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 namespace recipes.MW.SAXSAY.Recipes.Application.Commands.CreateRecipe;
 
 public sealed class CreateRecipeCommandHandler
-    : IRequestHandler<CreateRecipeCommand, Unit>
+    : IRequestHandler<CreateRecipeCommand, RecipeDto?>
 {
     #region Dependecies
     private readonly IRecipeRepository _recipeRepository;
@@ -25,29 +25,54 @@ public sealed class CreateRecipeCommandHandler
     #endregion
 
     #region Methods
-    public async Task<Unit> Handle(
+    public async Task<RecipeDto?> Handle(
         CreateRecipeCommand command, CancellationToken cancellationToken)
     {
+        using TransactionScope scope = new();
         if (PreparationTime.Create(command.Hours, command.Minutes) 
             is not PreparationTime preparationTime)
         {
             throw new ArgumentException(nameof(preparationTime));
         }
 
-        RecipeDto recipeDto = new (
-            null,
+        Recipe recipe = new
+        (
+            command.Id,
             command.Name,
             preparationTime,
             command.Portions,
             command.ImageUrl,
             command.Preparation,
             command.Calories,
-            command.CommentsSuggestions
+            command.CommentsSuggestions,
+            command.DietaryRestriction,
+            command.Ingredients,
+            command.NutritionalComponents
         );
 
-        await _recipeRepository.CreateRecipe(recipeDto, cancellationToken);
-        await _unitOfWork.SaveChanges(cancellationToken);
-        return Unit.Value;
+        RecipeId? recipeId = await _recipeRepository.CreateRecipe(recipe, cancellationToken);
+
+        await _unitOfWork.SaveChangesAsync(cancellationToken, scope);
+
+        if (recipeId == null)
+        {
+            return null;
+        }
+
+        RecipeDto recipeDto = new (
+            recipeId,
+            command.Name,
+            preparationTime,
+            command.Portions,
+            command.ImageUrl,
+            command.Preparation,
+            command.Calories,
+            command.CommentsSuggestions,
+            command.DietaryRestriction,
+            command.Ingredients,
+            command.NutritionalComponents
+        );
+        return recipeDto;
     }
     #endregion
 }

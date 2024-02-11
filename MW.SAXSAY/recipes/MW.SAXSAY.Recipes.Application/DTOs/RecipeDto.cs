@@ -28,7 +28,11 @@ public record RecipeDto
         string imageUrl,
         string preparation,
         double calories,
-        string commentsSuggestions)
+        string commentsSuggestions,
+        IEnumerable<DietaryRestriction>? dietaryRestrictions,
+        IEnumerable<RawMaterial>? ingredients,
+        IEnumerable<NutritionalComponent>? nutritionalInformation
+        )
     {
         Id = id;
         Name = name;
@@ -38,6 +42,9 @@ public record RecipeDto
         Preparation = preparation;
         Calories = calories;
         CommentsSuggestions = commentsSuggestions;
+        DietaryRestrictions = dietaryRestrictions;
+        Ingredients = ingredients;
+        NutritionalInformation = nutritionalInformation;
     }
     #endregion
 }
