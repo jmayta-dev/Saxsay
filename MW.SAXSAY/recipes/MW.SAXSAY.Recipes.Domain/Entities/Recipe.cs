@@ -1,10 +1,11 @@
+using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
 
-public sealed class Recipe
+public sealed class Recipe: IEntity<RecipeId>
 {
-    public RecipeId Id { get; private set; }
+    public RecipeId? Id { get; set; }
     public string Name { get; set; }
     public PreparationTime PreparationTime { get; set; }
     public int Portions { get; set; }
@@ -17,14 +18,17 @@ public sealed class Recipe
     public IEnumerable<NutritionalComponent>? NutritionalInformation { get; set; }
 
     public Recipe(
-        RecipeId id,
+        RecipeId? id,
         string name,
         PreparationTime preparationTime,
         int portions,
         string imageUrl,
         string preparation,
         double calories,
-        string commentsSuggestions)
+        string commentsSuggestions,
+        IEnumerable<DietaryRestriction>? dietaryRestrictions,
+        IEnumerable<RawMaterial>? ingredients,
+        IEnumerable<NutritionalComponent>? nutritionalInformation)
     {
         Id = id;
         Name = name;
@@ -34,6 +38,8 @@ public sealed class Recipe
         Preparation = preparation;
         Calories = calories;
         CommentsSuggestions = commentsSuggestions;
+        DietaryRestrictions = dietaryRestrictions;
+        Ingredients = ingredients;
+        NutritionalInformation = nutritionalInformation;
     }
-
 }
