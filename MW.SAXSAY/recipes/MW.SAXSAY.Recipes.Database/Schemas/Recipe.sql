@@ -1,12 +1,12 @@
-USE MWSAXSAYDB;
+USE [MWSAXSAYDB];
 GO
 
-IF EXISTS ( SELECT object_id FROM sys.objects
-            WHERE [object_id] = SCHEMA_ID('recipe') )
-    DROP SCHEMA recipe;
+IF EXISTS ( SELECT [object_id] FROM [sys].[objects]
+            WHERE [object_id] = SCHEMA_ID(N'recipe') )
+    DROP SCHEMA [recipe];
 GO
 
-CREATE SCHEMA recipe;
+CREATE SCHEMA [recipe];
 GO
 
 EXEC sp_addextendedproperty
