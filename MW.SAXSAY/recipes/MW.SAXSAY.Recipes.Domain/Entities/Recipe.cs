@@ -3,8 +3,9 @@ using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
 
-public sealed class Recipe: IEntity<RecipeId>
+public sealed class Recipe : IEntity<RecipeId>
 {
+    #region Properties
     public RecipeId? Id { get; set; }
     public string Name { get; set; }
     public PreparationTime PreparationTime { get; set; }
@@ -13,10 +14,11 @@ public sealed class Recipe: IEntity<RecipeId>
     public string Preparation { get; set; }
     public double Calories { get; set; }
     public string CommentsSuggestions { get; set; }
-    public IEnumerable<DietaryRestriction>? DietaryRestrictions { get; set; }
-    public IEnumerable<RawMaterial>? Ingredients { get; set; }
-    public IEnumerable<NutritionalComponent>? NutritionalInformation { get; set; }
 
+    public IEnumerable<RawMaterial>? Ingredients { get; set; }
+    #endregion
+
+    #region Constructor
     public Recipe(
         RecipeId? id,
         string name,
@@ -26,9 +28,7 @@ public sealed class Recipe: IEntity<RecipeId>
         string preparation,
         double calories,
         string commentsSuggestions,
-        IEnumerable<DietaryRestriction>? dietaryRestrictions,
-        IEnumerable<RawMaterial>? ingredients,
-        IEnumerable<NutritionalComponent>? nutritionalInformation)
+        IEnumerable<RawMaterial>? ingredients)
     {
         Id = id;
         Name = name;
@@ -38,8 +38,7 @@ public sealed class Recipe: IEntity<RecipeId>
         Preparation = preparation;
         Calories = calories;
         CommentsSuggestions = commentsSuggestions;
-        DietaryRestrictions = dietaryRestrictions;
         Ingredients = ingredients;
-        NutritionalInformation = nutritionalInformation;
     }
+    #endregion
 }

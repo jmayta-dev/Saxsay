@@ -1,4 +1,6 @@
+using System.Net.Http.Headers;
 using System.Net.NetworkInformation;
+using System.Text.RegularExpressions;
 
 namespace recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 
@@ -8,19 +10,19 @@ public record PreparationTime
     //
     // constants
     //
-    private const int DEFAULT_VALUE = 0;
-    private const int MAX_TOTAL_MINUTES = 5999;
+    private const uint DEFAULT_VALUE = 0;
+    private const uint MAX_TOTAL_MINUTES = 5999;
     //
     // properties
     //
-    public int Hours { get; init; }
-    public int Minutes { get; init; }
+    public uint Hours { get; init; }
+    public uint Minutes { get; init; }
     #endregion
 
     #region Constructor
     public PreparationTime() => Create(DEFAULT_VALUE);
 
-    private PreparationTime(int hours, int minutes)
+    private PreparationTime(uint hours, uint minutes)
     {
         Hours = hours;
         Minutes = minutes;
@@ -29,9 +31,9 @@ public record PreparationTime
 
     #region Methods
     public static PreparationTime? Create() => Create(DEFAULT_VALUE);
-    public static PreparationTime? Create(int minutes)
+    public static PreparationTime? Create(uint minutes)
     {
-        int hours = 0;
+        uint hours = 0;
         if (minutes > 59)
         {
             hours = minutes / 60;
@@ -40,14 +42,31 @@ public record PreparationTime
         return Create(hours, minutes);
     }
 
-    public static PreparationTime? Create(int hours, int minutes)
+    public static PreparationTime? Create(uint hours, uint minutes)
     {
-        int totalMinutes = hours * 60 + minutes;
+        uint totalMinutes = hours * 60 + minutes;
         if (totalMinutes > MAX_TOTAL_MINUTES)
         {
             return null;
         }
         return new PreparationTime(hours, minutes);
+    }
+
+    public static PreparationTime? Create(string timerString)
+    {
+        string pattern = @"(\d{2}):([0-5]\d)";
+        (uint hours, uint minutes) = (100, 100);
+        if (timerString.Length == 5 && Regex.IsMatch(timerString, pattern))
+        {
+            (hours, minutes) = ParseTimerString(timerString);
+        }
+        return Create(hours, minutes);
+    }
+
+    private static (uint hours, uint minutes) ParseTimerString(string timerString)
+    {
+        string[] parts = timerString.Split(":");
+        return (uint.Parse(parts[0]), uint.Parse(parts[1]));
     }
     #endregion
 }
