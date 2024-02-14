@@ -13,13 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Recipes.Test", "r
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Recipes.Infrastructure", "recipes\MW.SAXSAY.Recipes.Infrastructure\MW.SAXSAY.Recipes.Infrastructure.csproj", "{85A9E41E-5444-415B-940B-020D0E5B3CC8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MW.SAXSAY.Recipes.Client", "MW.SAXSAY.Recipes.Client", "{BB1E78A2-6298-45F0-B9AF-6D9A0334DA41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Recipes.Client.Api", "recipes\MW.SAXSAY.Recipes.Client\MW.SAXSAY.Recipes.Client.Api\MW.SAXSAY.Recipes.Client.Api.csproj", "{4592AC5A-0ACB-4ECA-AA65-2CC6ADB84033}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{21F2ED47-2ED2-4F86-96BB-BB276F395CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -38,11 +39,20 @@ Global
 		{85A9E41E-5444-415B-940B-020D0E5B3CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85A9E41E-5444-415B-940B-020D0E5B3CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85A9E41E-5444-415B-940B-020D0E5B3CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4592AC5A-0ACB-4ECA-AA65-2CC6ADB84033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4592AC5A-0ACB-4ECA-AA65-2CC6ADB84033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4592AC5A-0ACB-4ECA-AA65-2CC6ADB84033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4592AC5A-0ACB-4ECA-AA65-2CC6ADB84033}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{21F2ED47-2ED2-4F86-96BB-BB276F395CE6} = {D40B527C-F8D2-4ECC-AC9D-D4D25E1E877C}
 		{6A6052FE-5E09-4893-9C0C-3C08E7F162F4} = {D40B527C-F8D2-4ECC-AC9D-D4D25E1E877C}
 		{46DB4038-B9D2-4FD4-AE91-749BE98FF073} = {D40B527C-F8D2-4ECC-AC9D-D4D25E1E877C}
 		{85A9E41E-5444-415B-940B-020D0E5B3CC8} = {D40B527C-F8D2-4ECC-AC9D-D4D25E1E877C}
+		{BB1E78A2-6298-45F0-B9AF-6D9A0334DA41} = {D40B527C-F8D2-4ECC-AC9D-D4D25E1E877C}
+		{4592AC5A-0ACB-4ECA-AA65-2CC6ADB84033} = {BB1E78A2-6298-45F0-B9AF-6D9A0334DA41}
 	EndGlobalSection
 EndGlobal
