@@ -14,12 +14,12 @@ public record RecipeDto
     public string Preparation { get; set; }
     public double Calories { get; set; }
     public string CommentsSuggestions { get; set; }
-    public IEnumerable<DietaryRestriction>? DietaryRestrictions { get; set; }
-    public IEnumerable<RawMaterial>? Ingredients { get; set; }
-    public IEnumerable<NutritionalComponent>? NutritionalInformation { get; set; }
+    public IEnumerable<Ingredient>? Ingredients { get; set; }
     #endregion
 
     #region Constructor
+    public RecipeDto() { }
+
     public RecipeDto(
         RecipeId? id,
         string name,
@@ -29,9 +29,7 @@ public record RecipeDto
         string preparation,
         double calories,
         string commentsSuggestions,
-        IEnumerable<DietaryRestriction>? dietaryRestrictions,
-        IEnumerable<RawMaterial>? ingredients,
-        IEnumerable<NutritionalComponent>? nutritionalInformation
+        IEnumerable<Ingredient>? ingredients
         )
     {
         Id = id;
@@ -42,9 +40,7 @@ public record RecipeDto
         Preparation = preparation;
         Calories = calories;
         CommentsSuggestions = commentsSuggestions;
-        DietaryRestrictions = dietaryRestrictions;
         Ingredients = ingredients;
-        NutritionalInformation = nutritionalInformation;
     }
     #endregion
 }

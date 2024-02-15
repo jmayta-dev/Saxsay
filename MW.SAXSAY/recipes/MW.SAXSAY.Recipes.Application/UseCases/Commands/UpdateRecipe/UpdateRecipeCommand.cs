@@ -17,4 +17,4 @@ public record UpdateRecipeCommand(
     IEnumerable<DietaryRestriction>? DietaryRestriction,
     IEnumerable<Ingredient>? RawMaterials,
     IEnumerable<NutritionalComponent>? NutritionalComponents
-) : IRequest<RecipeDto>;
+);

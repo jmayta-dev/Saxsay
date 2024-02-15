@@ -2,10 +2,10 @@ using MediatR;
 using recipes.MW.SAXSAY.Recipes.Application.DTOs;
 using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 
-namespace recipes.MW.SAXSAY.Recipes.Application.Queries.GetRecipeAll;
+namespace recipes.MW.SAXSAY.Recipes.Application.UseCases.Queries.GetAllQuery;
 
-public class GetRecipeAllHandler
-    : IRequestHandler<GetRecipeAllQuery, IEnumerable<RecipeDto>>
+public class GetAllRecipesHandler
+    : IRequestHandler<GetAllRecipesQuery, IEnumerable<RecipeDto>>
 {
     #region Properties & Variables
     //
@@ -15,24 +15,24 @@ public class GetRecipeAllHandler
     //
     // privates
     //
-    
+
     //
     // publics
     //
     #endregion
 
     #region Costructor
-    public GetRecipeAllHandler(IRecipeRepository recipeRepository)
+    public GetAllRecipesHandler(IRecipeRepository recipeRepository)
     {
         _recipeRepository = recipeRepository;
     }
     #endregion
 
     public async Task<IEnumerable<RecipeDto>> Handle(
-        GetRecipeAllQuery request,
+        GetAllRecipesQuery request,
         CancellationToken cancellationToken)
     {
-        var recipes = await _recipeRepository.GetRecipeAll(cancellationToken);
-        return recipes;
+        var recipes = await _recipeRepository.GetAllRecipes(cancellationToken);
+        return recipes ?? new List<RecipeDto>();
     }
 }
