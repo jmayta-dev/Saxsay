@@ -25,22 +25,18 @@ public class SqlUnitOfWork : IUnitOfWork
     //
     // publics
     //
-    
+
     #endregion
 
     #region Constructor
-    public SqlUnitOfWork(string connectionString, RecipeRepository recipeRepository)
-    {
-        _connection = new SqlConnection(connectionString);
-        _connection.Open();
-        _scope = new TransactionScope();
-        _recipeRepository = recipeRepository;
-    }
+    public SqlUnitOfWork() { }
+    #endregion
 
-    public ValueTask SaveChanges(CancellationToken cancellationToken)
+    #region Methods
+    public Task SaveChangesAsync(CancellationToken cancellationToken, TransactionScope? scope = null)
     {
-        _scope?.Complete();
-        return ValueTask.CompletedTask;
+        scope?.Complete();
+        return Task.CompletedTask;
     }
     #endregion
 
@@ -62,11 +58,6 @@ public class SqlUnitOfWork : IUnitOfWork
     {
         Dispose(true);
         GC.SuppressFinalize(this);
-    }
-
-    public ValueTask SaveChangesAsync(CancellationToken cancellationToken, TransactionScope? scope = null)
-    {
-        throw new NotImplementedException();
     }
 
     ~SqlUnitOfWork()
