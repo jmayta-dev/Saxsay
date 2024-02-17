@@ -18,7 +18,7 @@ public record RecipeDto
     #endregion
 
     #region Constructor
-    public RecipeDto() { }
+    public RecipeDto(RecipeId recipeId) { }
 
     public RecipeDto(
         RecipeId? id,

@@ -5,6 +5,7 @@ using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 using recipes.MW.SAXSAY.Recipes.Infrastructure.Extension;
 using recipes.MW.SAXSAY.Recipes.Infrastructure.Persistence.SqlServer.Context;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 
 namespace recipes.MW.SAXSAY.Recipes.Infraestructure.Persistence.SqlServer.Repositories;
@@ -39,7 +40,26 @@ public class RecipeRepository : IRecipeRepository
     }
     #endregion
 
-    #region Methods
+    #region Support IDisposable
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
+        {
+            if (disposing)
+            {
+            }
+            disposed = true;
+        }
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+    #endregion
+
+    #region Mappers
     private static RecipeDto MapRecipeDto(IDataReader reader)
     {
         RecipeId id = new(reader.GetInt32("RecipeId"));
@@ -57,9 +77,10 @@ public class RecipeRepository : IRecipeRepository
             ingredients: null
         );
     }
+    #endregion
 
-    public async Task<IEnumerable<RecipeDto>> GetAllRecipes(
-        CancellationToken cancellationToken)
+    #region Methods
+    public async Task<IEnumerable<RecipeDto>> GetAllRecipes(CancellationToken cancellationToken)
     {
         RecipeDto recipeDTO = new();
         List<RecipeDto> recipeList = new();
@@ -88,6 +109,62 @@ public class RecipeRepository : IRecipeRepository
         return recipeList;
     }
 
+    public async Task<RecipeId?> CreateRecipe(Recipe recipe, CancellationToken cancellationToken)
+    {
+        string sp = "recipe.uspCreateRecipe";
+        SqlParameter[] parameters = {
+            new() {
+                ParameterName = "@Name",
+                Size = 254,
+                SqlDbType = SqlDbType.VarChar,
+                Value = recipe.Name
+            },
+            new() {
+                ParameterName = "@PreparationTime",
+                Size = 5,
+                SqlDbType = SqlDbType.Char,
+                Value = recipe.PreparationTime.ToString()
+            },
+            new() {
+                ParameterName = "@Portions",
+                SqlDbType = SqlDbType.Int,
+                Value = recipe.Portions
+            },
+            new() {
+                ParameterName = "@ImageUrl",
+                SqlDbType = SqlDbType.VarChar,
+                Size = 254,
+                Value = recipe.ImageUrl
+            },
+            new() {
+                ParameterName = "@Preparation",
+                SqlDbType = SqlDbType.VarChar,
+                Size = -1,
+                Value = recipe.Preparation
+            },
+            new() {
+                ParameterName = "@Calories",
+                SqlDbType = SqlDbType.Float,
+                Value = recipe.Calories
+            },
+            new() {
+                ParameterName = "@CommentSuggestion",
+                SqlDbType = SqlDbType.VarChar,
+                Size = -1,
+                Value = recipe.CommentsSuggestions
+            }
+        };
+        using SqlCommand command = new(sp, _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddRange(parameters);
+        _connection.Open();
+        object result = await command.ExecuteScalarAsync(cancellationToken);
+        if (int.TryParse(result.ToString(), out int newId))
+            return new RecipeId(newId);
+        else
+            return null;
+    }
+
     public async Task<RecipeDto> GetRecipeById(RecipeId id, CancellationToken cancellationToken)
     {
         RecipeDto recipeDTO = new();
@@ -110,25 +187,6 @@ public class RecipeRepository : IRecipeRepository
                 recipeDTO = recipeDTO with { Ingredients = ingredients };
             }
         return recipeDTO;
-    }
-    #endregion
-
-    #region Support IDisposable
-    protected virtual void Dispose(bool disposing)
-    {
-        if (!disposed)
-        {
-            if (disposing)
-            {
-            }
-            disposed = true;
-        }
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
     }
     #endregion
 }

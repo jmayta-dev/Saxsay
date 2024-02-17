@@ -68,5 +68,10 @@ public record PreparationTime
         string[] parts = timerString.Split(":");
         return (uint.Parse(parts[0]), uint.Parse(parts[1]));
     }
+
+    public override string? ToString()
+    {
+        return $"{ Hours:00}:{ Minutes:00}";
+    }
     #endregion
 }

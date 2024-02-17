@@ -15,7 +15,7 @@ public sealed class Recipe : IEntity<RecipeId>
     public double Calories { get; set; }
     public string CommentsSuggestions { get; set; }
 
-    public IEnumerable<RawMaterial>? Ingredients { get; set; }
+    public IEnumerable<Ingredient>? Ingredients { get; set; }
     #endregion
 
     #region Constructor
@@ -28,7 +28,7 @@ public sealed class Recipe : IEntity<RecipeId>
         string preparation,
         double calories,
         string commentsSuggestions,
-        IEnumerable<RawMaterial>? ingredients)
+        IEnumerable<Ingredient>? ingredients)
     {
         Id = id;
         Name = name;
