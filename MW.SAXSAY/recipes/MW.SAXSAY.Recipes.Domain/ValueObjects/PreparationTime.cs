@@ -56,7 +56,12 @@ public record PreparationTime
     {
         string pattern = @"(\d{2}):([0-5]\d)";
         (uint hours, uint minutes) = (100, 100);
-        if (timerString.Length == 5 && Regex.IsMatch(timerString, pattern))
+        if (timerString.Length == 5 &&
+            Regex.IsMatch(
+                timerString,
+                pattern,
+                RegexOptions.None,
+                TimeSpan.FromMilliseconds(100)))
         {
             (hours, minutes) = ParseTimerString(timerString);
         }
