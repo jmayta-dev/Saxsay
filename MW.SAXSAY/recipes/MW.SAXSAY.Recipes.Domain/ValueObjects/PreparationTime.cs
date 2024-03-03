@@ -1,5 +1,3 @@
-using System.Net.Http.Headers;
-using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 
 namespace recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
@@ -12,6 +10,7 @@ public record PreparationTime
     //
     private const uint DEFAULT_VALUE = 0;
     private const uint MAX_TOTAL_MINUTES = 5999;
+
     //
     // properties
     //
@@ -20,7 +19,11 @@ public record PreparationTime
     #endregion
 
     #region Constructor
-    public PreparationTime() => Create(DEFAULT_VALUE);
+    public PreparationTime()
+    {
+        Hours = 0;
+        Minutes = 0;
+    }
 
     private PreparationTime(uint hours, uint minutes)
     {
@@ -30,7 +33,17 @@ public record PreparationTime
     #endregion
 
     #region Methods
+    /// <summary>
+    /// Create a default PreparationTime timer
+    /// </summary>
+    /// <returns><see cref="PreparationTime"/></returns>
     public static PreparationTime? Create() => Create(DEFAULT_VALUE);
+
+    /// <summary>
+    /// Create a PreparationTime timer from number of minutes
+    /// </summary>
+    /// <param name="minutes">Number of minutes</param>
+    /// <returns><see cref="PreparationTime"/></returns>
     public static PreparationTime? Create(uint minutes)
     {
         uint hours = 0;
@@ -42,6 +55,12 @@ public record PreparationTime
         return Create(hours, minutes);
     }
 
+    /// <summary>
+    /// Create a PreparationTime timer from number of hours and minutes
+    /// </summary>
+    /// <param name="hours">Number of hours</param>
+    /// <param name="minutes">Number of minutes</param>
+    /// <returns><see cref="PreparationTime"/></returns>
     public static PreparationTime? Create(uint hours, uint minutes)
     {
         uint totalMinutes = hours * 60 + minutes;
@@ -52,6 +71,11 @@ public record PreparationTime
         return new PreparationTime(hours, minutes);
     }
 
+    /// <summary>
+    /// Create a PreparationTime timer from string
+    /// </summary>
+    /// <param name="timerString">String with format "HH:mm"</param>
+    /// <returns><see cref="PreparationTime"/></returns>
     public static PreparationTime? Create(string timerString)
     {
         string pattern = @"(\d{2}):([0-5]\d)";
@@ -68,6 +92,11 @@ public record PreparationTime
         return Create(hours, minutes);
     }
 
+    /// <summary>
+    /// Parse from timer in string format to hours and minutes
+    /// </summary>
+    /// <param name="timerString">String timer format</param>
+    /// <returns>tuple with hours and minutes</returns>
     private static (uint hours, uint minutes) ParseTimerString(string timerString)
     {
         string[] parts = timerString.Split(":");
@@ -76,7 +105,7 @@ public record PreparationTime
 
     public override string? ToString()
     {
-        return $"{ Hours:00}:{ Minutes:00}";
+        return $"{Hours:00}:{Minutes:00}";
     }
     #endregion
 }

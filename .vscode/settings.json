@@ -23,5 +23,9 @@
     "files.exclude": {
         "**/bin": true,
         "**/obj": true
+    },
+    "sonarlint.connectedMode.project": {
+        "connectionId": "JheisonMayta",
+        "projectKey": "jmayta-dev_saxsay"
     }
 }

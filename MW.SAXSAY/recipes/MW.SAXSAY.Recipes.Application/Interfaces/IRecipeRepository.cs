@@ -9,7 +9,7 @@ public interface IRecipeRepository : IDisposable
     // Task<bool> DeleteRecipe(
     //     RecipeDto recipeDto,
     //     CancellationToken cancellationToken);
-    Task<IEnumerable<RecipeDto>> GetAllRecipes(CancellationToken cancellationToken);
+    Task<IEnumerable<RecipeDto>> GetAllRecipes(CancellationToken cancellationToken = default);
 
     Task<RecipeDto> GetRecipeById(RecipeId id, CancellationToken cancellationToken);
     // Task<RecipeDto> UpdateRecipe(

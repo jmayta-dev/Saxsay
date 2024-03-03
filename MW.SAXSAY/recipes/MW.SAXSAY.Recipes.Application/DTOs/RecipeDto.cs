@@ -6,7 +6,7 @@ namespace recipes.MW.SAXSAY.Recipes.Application.DTOs;
 public record RecipeDto
 {
     #region Properties
-    public RecipeId? Id { get; private set; }
+    public RecipeId Id { get; private set; }
     public string Name { get; set; }
     public PreparationTime PreparationTime { get; set; }
     public int Portions { get; set; }
@@ -14,11 +14,11 @@ public record RecipeDto
     public string Preparation { get; set; }
     public double Calories { get; set; }
     public string CommentsSuggestions { get; set; }
-    public IEnumerable<Ingredient>? Ingredients { get; set; }
+    public IEnumerable<Ingredient> Ingredients { get; set; }
     #endregion
 
     #region Constructor
-    public RecipeDto(RecipeId recipeId) { }
+    public RecipeDto() { }
 
     public RecipeDto(
         RecipeId? id,

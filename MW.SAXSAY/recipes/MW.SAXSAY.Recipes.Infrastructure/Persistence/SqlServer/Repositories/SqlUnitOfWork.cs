@@ -15,13 +15,11 @@ public class SqlUnitOfWork : IUnitOfWork
     //
     // dependencies
     //
-    private readonly IDbConnection _connection;
     private readonly TransactionScope _scope;
     //
     // privates
     //
     private bool disposed = false;
-    private readonly IRecipeRepository _recipeRepository;
     //
     // publics
     //
@@ -29,7 +27,10 @@ public class SqlUnitOfWork : IUnitOfWork
     #endregion
 
     #region Constructor
-    public SqlUnitOfWork() { }
+    public SqlUnitOfWork(TransactionScope scope)
+    {
+        scope = _scope;
+    }
     #endregion
 
     #region Methods
@@ -47,7 +48,6 @@ public class SqlUnitOfWork : IUnitOfWork
         {
             if (disposing)
             {
-                _connection?.Dispose();
                 _scope?.Dispose();
             }
             disposed = true;

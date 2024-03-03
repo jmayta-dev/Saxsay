@@ -5,7 +5,6 @@ using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 using recipes.MW.SAXSAY.Recipes.Infrastructure.Extension;
 using recipes.MW.SAXSAY.Recipes.Infrastructure.Persistence.SqlServer.Context;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
 
 namespace recipes.MW.SAXSAY.Recipes.Infraestructure.Persistence.SqlServer.Repositories;
@@ -47,6 +46,7 @@ public class RecipeRepository : IRecipeRepository
         {
             if (disposing)
             {
+                _ingredientRepository?.Dispose();
             }
             disposed = true;
         }
@@ -80,7 +80,8 @@ public class RecipeRepository : IRecipeRepository
     #endregion
 
     #region Methods
-    public async Task<IEnumerable<RecipeDto>> GetAllRecipes(CancellationToken cancellationToken)
+    public async Task<IEnumerable<RecipeDto>> GetAllRecipes(
+        CancellationToken cancellationToken = default)
     {
         RecipeDto recipeDTO = new();
         List<RecipeDto> recipeList = new();
@@ -140,7 +141,7 @@ public class RecipeRepository : IRecipeRepository
                 ParameterName = "@Preparation",
                 SqlDbType = SqlDbType.VarChar,
                 Size = -1,
-                Value = recipe.Preparation
+                Value = recipe.PreparationSteps
             },
             new() {
                 ParameterName = "@Calories",

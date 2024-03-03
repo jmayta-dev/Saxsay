@@ -23,11 +23,11 @@ public class RecipeController : ControllerBase
         return Ok(response);
     }
 
-    [HttpGet("{recipeId}")]
+    [HttpGet("{recipeId:int}")]
     public async Task<IActionResult> GetRecipeById(int recipeId)
     {
         var response = await _mediator.Send(new GetRecipeByIdQuery(recipeId));
-        if (response?.Id == null)
+        if (response?.Id is null)
             return NotFound();
         return Ok(response);
     }
