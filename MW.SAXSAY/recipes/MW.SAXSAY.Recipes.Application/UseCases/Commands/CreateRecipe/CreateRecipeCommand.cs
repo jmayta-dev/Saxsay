@@ -11,7 +11,6 @@ public record CreateRecipeCommand(
     int Portions,
     string ImageUrl,
     string Preparation,
-    double Calories,
     string CommentsSuggestions,
     IEnumerable<Ingredient>? Ingredients
 ) : IRequest<RecipeDto>;
