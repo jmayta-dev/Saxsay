@@ -9,7 +9,6 @@ public sealed class Recipe : IEntity<RecipeId>
     public RecipeId? Id { get; set; }
     public string? Name { get; set; }
     public PreparationInfo? PreparationInfo { get; set; }
-    public NutritionalInfo? NutritionalInfo { get; set; }
     public int? Portions { get; set; }
     public string? ImageUrl { get; set; }
     public string? CommentsSuggestions { get; set; }
@@ -44,6 +43,7 @@ public sealed class Recipe : IEntity<RecipeId>
     {
         _ingredients.Remove(ingredient);
     }
+
     #endregion
     /// <summary>
     /// Recipe Builder
@@ -75,11 +75,6 @@ public sealed class Recipe : IEntity<RecipeId>
         public void WithPreparationInfo(PreparationInfo preparationInfo)
         {
             _recipe.PreparationInfo = preparationInfo;
-        }
-
-        public void WithNutritionalInfo(NutritionalInfo nutritionalInfo)
-        {
-            _recipe.NutritionalInfo = nutritionalInfo;
         }
 
         public void WithPortions(int potions)
