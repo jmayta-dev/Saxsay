@@ -19,28 +19,5 @@ public record RecipeDto
 
     #region Constructor
     public RecipeDto() { }
-
-    public RecipeDto(
-        RecipeId? id,
-        string name,
-        PreparationTime preparationTime,
-        int portions,
-        string imageUrl,
-        string preparation,
-        double calories,
-        string commentsSuggestions,
-        IEnumerable<Ingredient>? ingredients
-        )
-    {
-        Id = id;
-        Name = name;
-        PreparationTime = preparationTime;
-        Portions = portions;
-        ImageUrl = imageUrl;
-        Preparation = preparation;
-        Calories = calories;
-        CommentsSuggestions = commentsSuggestions;
-        Ingredients = ingredients;
-    }
     #endregion
 }

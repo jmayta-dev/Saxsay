@@ -5,7 +5,7 @@ namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
 
 public sealed class Recipe : IEntity<RecipeId>
 {
-    #region Properties
+    #region Properties & Variables
     public RecipeId? Id { get; set; }
     public string? Name { get; set; }
     public PreparationInfo? PreparationInfo { get; set; }
@@ -18,6 +18,7 @@ public sealed class Recipe : IEntity<RecipeId>
     #endregion
 
     #region Constructor
+    private Recipe() {}
     #endregion
 
     #region Methods
@@ -43,8 +44,8 @@ public sealed class Recipe : IEntity<RecipeId>
     {
         _ingredients.Remove(ingredient);
     }
-
     #endregion
+
     /// <summary>
     /// Recipe Builder
     /// </summary>
