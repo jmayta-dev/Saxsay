@@ -1,0 +1,8 @@
+# syntax=docker/dockerfile:1
+
+FROM mcr.microsoft.com/mssql/server:2022-latest AS build
+ENV ACCEPT_EULA=Y
+ENV MSSQL_SA_PASSWORD=S3th3l0car
+
+WORKDIR /tmp
+COPY ./MW.SAXSAY/recipes/MW.SAXSAY.Recipes.Database/Database/mwsaxsaydb.sql /tmp/.

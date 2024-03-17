@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-03-09T22:37:56.417Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="avI8Sl-esGZiJPfJH6pS" version="24.0.3" type="device">
+<mxfile host="app.diagrams.net" modified="2024-03-16T02:51:07.041Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="REVCQnMKXTHEVDHaDEah" version="24.0.4" type="device">
   <diagram name="Page-1" id="eK5q1uq8pc-KG2rPm8aH">
     <mxGraphModel dx="1680" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -85,7 +85,7 @@
           <mxGeometry y="268" width="440" height="26" as="geometry" />
         </mxCell>
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-13" value="PreparationInfo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="1" vertex="1">
-          <mxGeometry x="550" y="604" width="290" height="112" as="geometry" />
+          <mxGeometry x="490" y="604" width="290" height="112" as="geometry" />
         </mxCell>
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-14" value="+ PreparationTime: PreparationTime | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-13" vertex="1">
           <mxGeometry y="26" width="290" height="26" as="geometry" />
@@ -199,7 +199,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-41" value="RecipeId" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="1" vertex="1">
-          <mxGeometry x="-340" y="630" width="160" height="60" as="geometry" />
+          <mxGeometry x="-280" y="630" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-45" value="+ Value: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="8ohomHwBbH_gqu5Bp_yc-41" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
@@ -229,7 +229,7 @@
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-51" value="UnitOfMeasure" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="1" vertex="1">
           <mxGeometry x="-480" y="350" width="220" height="242" as="geometry" />
         </mxCell>
-        <mxCell id="AWOsg6amkYeusiEbfDBO-5" value="+ Id: UnitOfMeasureId | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" vertex="1" parent="8ohomHwBbH_gqu5Bp_yc-51">
+        <mxCell id="AWOsg6amkYeusiEbfDBO-5" value="+ Id: UnitOfMeasureId | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="8ohomHwBbH_gqu5Bp_yc-51" vertex="1">
           <mxGeometry y="26" width="220" height="26" as="geometry" />
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-52" value="+ Name: string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="8ohomHwBbH_gqu5Bp_yc-51" vertex="1">
@@ -256,16 +256,16 @@
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-54" value="+ UnitOfMeasure()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="8ohomHwBbH_gqu5Bp_yc-51" vertex="1">
           <mxGeometry y="216" width="220" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="AWOsg6amkYeusiEbfDBO-1" value="&lt;i style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;IEntity&amp;lt;TId&amp;gt;&lt;/b&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;dashed=1;" vertex="1" parent="1">
+        <mxCell id="AWOsg6amkYeusiEbfDBO-1" value="&lt;i style=&quot;font-weight: normal;&quot;&gt;&amp;lt;&amp;lt;Interface&amp;gt;&amp;gt;&lt;/i&gt;&lt;br&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;IEntity&amp;lt;TId&amp;gt;&lt;/b&gt;" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=40;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;dashed=1;" parent="1" vertex="1">
           <mxGeometry x="-450" y="176" width="160" height="74" as="geometry" />
         </mxCell>
-        <mxCell id="AWOsg6amkYeusiEbfDBO-2" value="+ Id: TId | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" vertex="1" parent="AWOsg6amkYeusiEbfDBO-1">
+        <mxCell id="AWOsg6amkYeusiEbfDBO-2" value="+ Id: TId | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="AWOsg6amkYeusiEbfDBO-1" vertex="1">
           <mxGeometry y="40" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="AWOsg6amkYeusiEbfDBO-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" vertex="1" parent="AWOsg6amkYeusiEbfDBO-1">
+        <mxCell id="AWOsg6amkYeusiEbfDBO-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="AWOsg6amkYeusiEbfDBO-1" vertex="1">
           <mxGeometry y="66" width="160" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="AWOsg6amkYeusiEbfDBO-4" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="8ohomHwBbH_gqu5Bp_yc-51" target="AWOsg6amkYeusiEbfDBO-1">
+        <mxCell id="AWOsg6amkYeusiEbfDBO-4" value="" style="endArrow=block;dashed=1;endFill=0;endSize=12;html=1;rounded=0;" parent="1" source="8ohomHwBbH_gqu5Bp_yc-51" target="AWOsg6amkYeusiEbfDBO-1" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
             <mxPoint x="-600" y="290" as="sourcePoint" />
             <mxPoint x="-440" y="290" as="targetPoint" />

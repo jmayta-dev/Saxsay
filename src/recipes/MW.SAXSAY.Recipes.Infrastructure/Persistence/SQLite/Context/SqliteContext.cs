@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace recipes.MW.SAXSAY.Recipes.Infrastructure.Persistence.SqlServer.Context;
 
-public class ApplicationDbContext
+public class SqliteContext
 {
     #region Properties & Variables
     //
@@ -15,10 +15,11 @@ public class ApplicationDbContext
     #endregion
 
     #region Constructor
-    public ApplicationDbContext(IConfiguration configuration)
+    public SqlServerContext(IConfiguration configuration)
     {
         _configuration = configuration;
-        _connectionString = _configuration.GetConnectionString("MwSaxsayConnection") ?? "";
+        _connectionString =
+        _configuration.GetConnectionString("MwSaxsayConnection") ?? "";
     }
     #endregion
 

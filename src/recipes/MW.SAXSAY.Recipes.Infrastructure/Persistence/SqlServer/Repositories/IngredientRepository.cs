@@ -13,7 +13,7 @@ public class IngredientRepository : IIngredientRepository
     //
     // dependency
     //
-    private readonly ApplicationDbContext _context;
+    private readonly SqlServerContext _context;
     private readonly SqlConnection _connection;
     //
     // public
@@ -27,7 +27,7 @@ public class IngredientRepository : IIngredientRepository
     #endregion
 
     #region Constructor
-    public IngredientRepository(ApplicationDbContext context)
+    public IngredientRepository(SqlServerContext context)
     {
         _context = context;
         _connection = (SqlConnection)context.Connection;

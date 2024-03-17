@@ -15,7 +15,7 @@ public static class DependencyInjection
 
     private static void AddServices(this IServiceCollection services)
     {
-        services.AddSingleton<ApplicationDbContext>();
+        services.AddSingleton<SqlServerContext>();
 
         services
             .AddScoped<IUnitOfWork, SqlUnitOfWork>()

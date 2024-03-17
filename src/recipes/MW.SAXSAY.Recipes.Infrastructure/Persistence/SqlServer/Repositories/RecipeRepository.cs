@@ -1,9 +1,11 @@
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 using recipes.MW.SAXSAY.Recipes.Application.DTOs;
 using recipes.MW.SAXSAY.Recipes.Domain.Entities;
 using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
 using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
 using recipes.MW.SAXSAY.Recipes.Infrastructure.Extension;
+using recipes.MW.SAXSAY.Recipes.Infrastructure.Persistence;
 using recipes.MW.SAXSAY.Recipes.Infrastructure.Persistence.SqlServer.Context;
 using System.Data;
 
@@ -15,9 +17,10 @@ public class RecipeRepository : IRecipeRepository
     //
     // dependencies
     //
-    private readonly ApplicationDbContext _context;
+    //private readonly SqlServerContext _context;
     private readonly IIngredientRepository _ingredientRepository;
     private readonly SqlConnection _connection;
+    private readonly DatabaseContext<SqlConnection> _context;
     //
     // privates
     //
@@ -29,12 +32,17 @@ public class RecipeRepository : IRecipeRepository
     #endregion
 
     #region Constructor
+    public RecipeRepository(IConfiguration configuration)
+    {
+        _context = new DatabaseContext<SqlConnection>(configuration, "");
+        _connection = _context.Connection;
+    }
     public RecipeRepository(
-        ApplicationDbContext context,
+        SqlServerContext context,
         IIngredientRepository ingredientRepository)
     {
         _context = context;
-        _connection = (SqlConnection)_context.Connection;
+        
         _ingredientRepository = ingredientRepository;
     }
     #endregion
