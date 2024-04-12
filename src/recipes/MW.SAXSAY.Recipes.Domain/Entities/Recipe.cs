@@ -1,7 +1,9 @@
-using System.Collections.Immutable;
-using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
+using System.Runtime.CompilerServices;
+using MW.CHUYA.Domain.Common.Interfaces;
+using MW.SAXSAY.Ingredients.Domain.Entities;
+using MW.SAXSAY.Recipes.Domain.ValueObjects;
 
-namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
+namespace MW.SAXSAY.Recipes.Domain.Entities;
 
 public sealed class Recipe : IEntity<RecipeId>
 {
@@ -12,9 +14,9 @@ public sealed class Recipe : IEntity<RecipeId>
     public int? Portions { get; set; }
     public string? ImageUrl { get; set; }
     public string? CommentsSuggestions { get; set; }
+    private readonly List<Ingredient> _ingredients = new();
     public IReadOnlyCollection<Ingredient>? Ingredients => _ingredients.AsReadOnly();
 
-    private readonly List<Ingredient> _ingredients = new();
     #endregion
 
     #region Constructor
@@ -51,14 +53,22 @@ public sealed class Recipe : IEntity<RecipeId>
     /// </summary>
     public class Builder
     {
+        #region Properties & Variables
+        //
+        // private
+        //
         private Recipe _recipe = new();
+        #endregion
 
+        #region Constructor
         public Builder()
         {
             Reset();
         }
+        #endregion
 
-        public void Reset()
+        #region Methods
+        private void Reset()
         {
             _recipe = new Recipe();
         }
@@ -93,11 +103,12 @@ public sealed class Recipe : IEntity<RecipeId>
             _recipe.CommentsSuggestions = commentsSuggestions;
         }
 
-        public Recipe GetRecipe()
+        public Recipe Build()
         {
             Recipe recipe = _recipe;
             Reset();
             return recipe;
         }
+        #endregion
     }
 }

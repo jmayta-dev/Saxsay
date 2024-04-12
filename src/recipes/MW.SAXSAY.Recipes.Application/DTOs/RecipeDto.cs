@@ -1,7 +1,6 @@
-using recipes.MW.SAXSAY.Recipes.Domain.Entities;
-using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
+using MW.SAXSAY.Recipes.Domain.Entities;
 
-namespace recipes.MW.SAXSAY.Recipes.Application.DTOs;
+namespace MW.SAXSAY.Recipes.Application.DTOs;
 
 public record RecipeDto
 {

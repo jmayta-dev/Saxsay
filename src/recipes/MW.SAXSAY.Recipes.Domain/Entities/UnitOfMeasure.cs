@@ -1,4 +1,5 @@
-using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
+using MW.CHUYA.Domain.Common.Interfaces;
+using MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
 

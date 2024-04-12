@@ -10,4 +10,9 @@
     <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\ingredients\MW.SAXSAY.Ingredients.Domain\MW.SAXSAY.Ingredients.Domain.csproj" />
+    <ProjectReference Include="..\..\..\..\chuya\src\MW.CHUYA.Domain\MW.CHUYA.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

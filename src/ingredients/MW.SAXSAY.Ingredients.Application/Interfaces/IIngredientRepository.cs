@@ -1,6 +1,6 @@
-using recipes.MW.SAXSAY.Recipes.Domain.Entities;
+using MW.SAXSAY.Ingredients.Domain.Entities;
 
-namespace recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
+namespace MW.SAXSAY.Recipes.Domain.Interfaces;
 
 public interface IIngredientRepository : IDisposable
 {

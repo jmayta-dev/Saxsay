@@ -1,18 +1,18 @@
-<mxfile host="app.diagrams.net" modified="2024-03-16T02:51:07.041Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="REVCQnMKXTHEVDHaDEah" version="24.0.4" type="device">
+<mxfile host="app.diagrams.net" modified="2024-03-28T12:23:14.715Z" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="tCM6hIWtat5P39eVt3Px" version="24.1.0" type="device">
   <diagram name="Page-1" id="eK5q1uq8pc-KG2rPm8aH">
-    <mxGraphModel dx="1680" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="2163" dy="870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-1" value="Recipe" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="1" vertex="1">
-          <mxGeometry x="-40" y="340" width="440" height="640" as="geometry">
+          <mxGeometry x="-40" y="340" width="440" height="614" as="geometry">
             <mxRectangle x="90" y="60" width="80" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-12" value="+ Id: RecipeId | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
           <mxGeometry y="26" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="Wd_TfYUkpV-hSAjJAys6-2" value="+ Name: string | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
+        <mxCell id="Wd_TfYUkpV-hSAjJAys6-2" value="+ Name: string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
           <mxGeometry y="52" width="440" height="26" as="geometry" />
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-21" value="+ PreparationInfo: PreparationInfo | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
@@ -24,32 +24,29 @@
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-8" value="+ ImageUrl: string | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
           <mxGeometry y="130" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="Wd_TfYUkpV-hSAjJAys6-9" value="+ Preparation: attribute" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
+        <mxCell id="Wd_TfYUkpV-hSAjJAys6-10" value="+ CommentSuggestion: string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
           <mxGeometry y="156" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="Wd_TfYUkpV-hSAjJAys6-10" value="+ CommentSuggestion: attribute" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
+        <mxCell id="Wd_TfYUkpV-hSAjJAys6-11" value="+ Ingredients: T[*]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
           <mxGeometry y="182" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="Wd_TfYUkpV-hSAjJAys6-11" value="+ Ingredients: T[*]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
+        <mxCell id="8ohomHwBbH_gqu5Bp_yc-24" value="- _ingredients: T[*]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
           <mxGeometry y="208" width="440" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="8ohomHwBbH_gqu5Bp_yc-24" value="- _ingredients: T[*]" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
-          <mxGeometry y="234" width="440" height="26" as="geometry" />
-        </mxCell>
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
-          <mxGeometry y="260" width="440" height="8" as="geometry" />
+          <mxGeometry y="234" width="440" height="8" as="geometry" />
         </mxCell>
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-4" value="+ AddIngredient(in ingredient: Ingredient): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
-          <mxGeometry y="268" width="440" height="26" as="geometry" />
+          <mxGeometry y="242" width="440" height="26" as="geometry" />
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-25" value="+ AddIngredientCollection(in ingredients: Ingredient[*]): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
-          <mxGeometry y="294" width="440" height="26" as="geometry" />
+          <mxGeometry y="268" width="440" height="26" as="geometry" />
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-26" value="+ RemoveIngredient(in ingredient: Ingredient): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
-          <mxGeometry y="320" width="440" height="26" as="geometry" />
+          <mxGeometry y="294" width="440" height="26" as="geometry" />
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-27" value="Recipe.Builder" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-1" vertex="1">
-          <mxGeometry y="346" width="440" height="294" as="geometry" />
+          <mxGeometry y="320" width="440" height="294" as="geometry" />
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-28" value="- _recipe: Recipe" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="8ohomHwBbH_gqu5Bp_yc-27" vertex="1">
           <mxGeometry y="26" width="440" height="26" as="geometry" />
@@ -85,7 +82,7 @@
           <mxGeometry y="268" width="440" height="26" as="geometry" />
         </mxCell>
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-13" value="PreparationInfo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="1" vertex="1">
-          <mxGeometry x="490" y="604" width="290" height="112" as="geometry" />
+          <mxGeometry x="550" y="591" width="290" height="112" as="geometry" />
         </mxCell>
         <mxCell id="Wd_TfYUkpV-hSAjJAys6-14" value="+ PreparationTime: PreparationTime | null" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="Wd_TfYUkpV-hSAjJAys6-13" vertex="1">
           <mxGeometry y="26" width="290" height="26" as="geometry" />
@@ -199,7 +196,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-41" value="RecipeId" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="1" vertex="1">
-          <mxGeometry x="-280" y="630" width="160" height="60" as="geometry" />
+          <mxGeometry x="-290" y="617" width="160" height="60" as="geometry" />
         </mxCell>
         <mxCell id="8ohomHwBbH_gqu5Bp_yc-45" value="+ Value: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;fontFamily=Nanum Gothic Coding;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DNanum%2BGothic%2BCoding;" parent="8ohomHwBbH_gqu5Bp_yc-41" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />

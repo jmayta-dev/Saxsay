@@ -1,7 +1,6 @@
-
 using AutoMapper;
-using recipes.MW.SAXSAY.Recipes.Application.DTOs;
-using recipes.MW.SAXSAY.Recipes.Domain.Entities;
+using MW.SAXSAY.Recipes.Application.DTOs;
+using MW.SAXSAY.Recipes.Domain.Entities;
 
 namespace recipes.MW.SAXSAY.Recipes.Application.UseCases.Mappings;
 

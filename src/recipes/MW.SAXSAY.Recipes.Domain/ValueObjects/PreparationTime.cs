@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
+namespace MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 public record PreparationTime
 {

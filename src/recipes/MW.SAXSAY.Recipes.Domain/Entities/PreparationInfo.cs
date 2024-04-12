@@ -1,7 +1,7 @@
 
-using recipes.MW.SAXSAY.Recipes.Domain.ValueObjects;
+using MW.SAXSAY.Recipes.Domain.ValueObjects;
 
-namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
+namespace MW.SAXSAY.Recipes.Domain.Entities;
 
 public record PreparationInfo
 {

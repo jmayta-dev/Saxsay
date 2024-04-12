@@ -1,6 +1,6 @@
-using recipes.MW.SAXSAY.Recipes.Domain.Interfaces;
+using MW.CHUYA.Domain.Common.Interfaces;
 
-namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
+namespace MW.SAXSAY.Ingredients.Domain.Entities;
 
 public class Ingredient : IEntity<IngredientId>
 {
