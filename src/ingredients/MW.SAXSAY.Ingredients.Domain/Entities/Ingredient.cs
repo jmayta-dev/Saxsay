@@ -1,4 +1,5 @@
 using MW.CHUYA.Domain.Common.Interfaces;
+using MW.SAXSAY.Ingredients.Domain.ValueObjects;
 
 namespace MW.SAXSAY.Ingredients.Domain.Entities;
 
