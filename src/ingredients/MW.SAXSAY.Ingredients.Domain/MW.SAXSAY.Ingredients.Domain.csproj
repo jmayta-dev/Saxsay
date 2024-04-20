@@ -3,6 +3,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\chuya\src\MW.CHUYA.Domain\MW.CHUYA.Domain.csproj" />
     <ProjectReference Include="..\..\..\..\sunqu\src\uom\MW.SUNQU.UOM.Domain\MW.SUNQU.UOM.Domain.csproj" />
+    <ProjectReference Include="..\..\MW.SAXSAY.Domain\MW.SAXSAY.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
