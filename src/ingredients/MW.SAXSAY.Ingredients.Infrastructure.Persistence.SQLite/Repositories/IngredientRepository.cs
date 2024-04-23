@@ -39,10 +39,34 @@ public class IngredientRepository : Repository, IIngredientRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Ingredient>> GetAllAsync(
+    public async Task<IEnumerable<Ingredient>> GetAllAsync(
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        List<Ingredient> ingredients = new();
+        string query =
+        @"
+            SELECT Id, Description, IsActive
+            FROM ingredient_Ingredient;
+        ";
+        SqliteCommand command = CreateCommand(query);
+        command.CommandType = CommandType.Text;
+        var reader = await command.ExecuteReaderAsync(cancellationToken);
+        if (reader.HasRows)
+        {
+            while (await reader.ReadAsync(cancellationToken))
+            {
+                Ingredient.IngredientBuilder ingredientBuilder = new();
+                var ingredientId = new IngredientId(reader.GetInt64(reader.GetOrdinal("Id")));
+                ingredientBuilder.WithIngredientId(ingredientId);
+                ingredientBuilder.WithDescription(reader.GetString(reader.GetOrdinal("Description")));
+                ingredientBuilder.WithStatusActive(reader.GetBoolean(reader.GetOrdinal("IsActive")));
+                var ingredient = ingredientBuilder.Build();
+
+                ingredients.Add(ingredient);
+                //                ingredientBuilder.WithBaseUnit(reader.GetInt64(reader.GetOrdinal("BaseUnitId")));
+            }
+        }
+        return ingredients;
     }
 
     public async Task<IngredientId?> RegisterAsync(
@@ -55,6 +79,8 @@ public class IngredientRepository : Repository, IIngredientRepository
             (   Description,    IsActive    )
             VALUES
             (   @Description,   @IsActive   );
+
+            SELECT last_insert_rowid();
         ";
         SqliteCommand command = CreateCommand(query);
         command.CommandType = CommandType.Text;
@@ -70,18 +96,10 @@ public class IngredientRepository : Repository, IIngredientRepository
             SqliteType = SqliteType.Text,
             Value = ingredient.Description
         });
-        var affectedRows = await command.ExecuteNonQueryAsync(cancellationToken);
-        if (affectedRows > 0)
-        {
-            string subQuery = "SELECT last_insert_rowid()";
-            using SqliteCommand subCommand = CreateCommand(subQuery);
-            subCommand.CommandType = CommandType.Text;
-            var result = await subCommand.ExecuteScalarAsync(cancellationToken);
-            if (long.TryParse(result?.ToString(), out long newId))
-            {
-                newIngredientId = new IngredientId(newId);
-            }
-        }
+
+        var result = await command.ExecuteScalarAsync(cancellationToken);
+        if (long.TryParse(result?.ToString(), out long newId))
+            newIngredientId = new IngredientId(newId);
         return newIngredientId;
     }
 

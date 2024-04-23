@@ -3,21 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ingredients", "ingredients", "{770A1D93-FD37-48A0-B482-68CB88B7B7BE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ingredients", "ingredients", "{8007CA3E-604C-480E-BA50-C612BD208FB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Ingredients.Domain", "ingredients\MW.SAXSAY.Ingredients.Domain\MW.SAXSAY.Ingredients.Domain.csproj", "{C010EF6B-8072-4D0C-BFB3-2C95F8766B1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Ingredients.Application", "ingredients\MW.SAXSAY.Ingredients.Application\MW.SAXSAY.Ingredients.Application.csproj", "{01EEEC7D-148D-43E6-82FE-38FD03497271}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Ingredients.Application", "ingredients\MW.SAXSAY.Ingredients.Application\MW.SAXSAY.Ingredients.Application.csproj", "{A00ED10D-BD3A-4823-B24D-AFF77E5170A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Ingredients.Domain", "ingredients\MW.SAXSAY.Ingredients.Domain\MW.SAXSAY.Ingredients.Domain.csproj", "{CA8459C5-8326-4A1E-958C-1A7596D75821}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Domain", "MW.SAXSAY.Domain\MW.SAXSAY.Domain.csproj", "{A652535A-3090-4C00-A462-2DB671B05004}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite", "ingredients\MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite\MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.csproj", "{4913A1CF-65F3-445C-B80C-973BC8F2C897}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MW.SAXSAY.Ingredients.Infrastructure", "MW.SAXSAY.Ingredients.Infrastructure", "{5D87AE8B-74BA-4F72-8481-6F5A9ABC3805}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Ingredients.Services.Api", "ingredients\MW.SAXSAY.Ingredients.Services.Api\MW.SAXSAY.Ingredients.Services.Api.csproj", "{3E864ED0-A115-4F1B-9194-84C43AA01118}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite", "ingredients\MW.SAXSAY.Ingredients.Infrastructure\MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite\MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.csproj", "{1F9A05E2-9131-41AB-AC61-A14FA70FE96C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MW.SAXSAY.Ingredients.Services", "MW.SAXSAY.Ingredients.Services", "{894C32D6-0590-4E84-B552-B6869AEFFBC1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Ingredients.Services.Api", "ingredients\MW.SAXSAY.Ingredients.Services\MW.SAXSAY.Ingredients.Services.Api\MW.SAXSAY.Ingredients.Services.Api.csproj", "{7A9AD9EE-4E32-45F2-AA22-427AFD247457}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Domain", "MW.SAXSAY.Domain\MW.SAXSAY.Domain.csproj", "{8863ECC9-C3BE-4D93-9300-DC279F9AFCD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,36 +21,34 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C010EF6B-8072-4D0C-BFB3-2C95F8766B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C010EF6B-8072-4D0C-BFB3-2C95F8766B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C010EF6B-8072-4D0C-BFB3-2C95F8766B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C010EF6B-8072-4D0C-BFB3-2C95F8766B1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A00ED10D-BD3A-4823-B24D-AFF77E5170A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A00ED10D-BD3A-4823-B24D-AFF77E5170A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A00ED10D-BD3A-4823-B24D-AFF77E5170A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A00ED10D-BD3A-4823-B24D-AFF77E5170A1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A652535A-3090-4C00-A462-2DB671B05004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A652535A-3090-4C00-A462-2DB671B05004}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A652535A-3090-4C00-A462-2DB671B05004}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A652535A-3090-4C00-A462-2DB671B05004}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F9A05E2-9131-41AB-AC61-A14FA70FE96C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F9A05E2-9131-41AB-AC61-A14FA70FE96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F9A05E2-9131-41AB-AC61-A14FA70FE96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F9A05E2-9131-41AB-AC61-A14FA70FE96C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A9AD9EE-4E32-45F2-AA22-427AFD247457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A9AD9EE-4E32-45F2-AA22-427AFD247457}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A9AD9EE-4E32-45F2-AA22-427AFD247457}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A9AD9EE-4E32-45F2-AA22-427AFD247457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01EEEC7D-148D-43E6-82FE-38FD03497271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01EEEC7D-148D-43E6-82FE-38FD03497271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01EEEC7D-148D-43E6-82FE-38FD03497271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01EEEC7D-148D-43E6-82FE-38FD03497271}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA8459C5-8326-4A1E-958C-1A7596D75821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8459C5-8326-4A1E-958C-1A7596D75821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8459C5-8326-4A1E-958C-1A7596D75821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8459C5-8326-4A1E-958C-1A7596D75821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4913A1CF-65F3-445C-B80C-973BC8F2C897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4913A1CF-65F3-445C-B80C-973BC8F2C897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4913A1CF-65F3-445C-B80C-973BC8F2C897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4913A1CF-65F3-445C-B80C-973BC8F2C897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E864ED0-A115-4F1B-9194-84C43AA01118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E864ED0-A115-4F1B-9194-84C43AA01118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E864ED0-A115-4F1B-9194-84C43AA01118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E864ED0-A115-4F1B-9194-84C43AA01118}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8863ECC9-C3BE-4D93-9300-DC279F9AFCD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8863ECC9-C3BE-4D93-9300-DC279F9AFCD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8863ECC9-C3BE-4D93-9300-DC279F9AFCD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8863ECC9-C3BE-4D93-9300-DC279F9AFCD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C010EF6B-8072-4D0C-BFB3-2C95F8766B1E} = {770A1D93-FD37-48A0-B482-68CB88B7B7BE}
-		{A00ED10D-BD3A-4823-B24D-AFF77E5170A1} = {770A1D93-FD37-48A0-B482-68CB88B7B7BE}
-		{5D87AE8B-74BA-4F72-8481-6F5A9ABC3805} = {770A1D93-FD37-48A0-B482-68CB88B7B7BE}
-		{1F9A05E2-9131-41AB-AC61-A14FA70FE96C} = {5D87AE8B-74BA-4F72-8481-6F5A9ABC3805}
-		{894C32D6-0590-4E84-B552-B6869AEFFBC1} = {770A1D93-FD37-48A0-B482-68CB88B7B7BE}
-		{7A9AD9EE-4E32-45F2-AA22-427AFD247457} = {894C32D6-0590-4E84-B552-B6869AEFFBC1}
+		{01EEEC7D-148D-43E6-82FE-38FD03497271} = {8007CA3E-604C-480E-BA50-C612BD208FB0}
+		{CA8459C5-8326-4A1E-958C-1A7596D75821} = {8007CA3E-604C-480E-BA50-C612BD208FB0}
+		{4913A1CF-65F3-445C-B80C-973BC8F2C897} = {8007CA3E-604C-480E-BA50-C612BD208FB0}
+		{3E864ED0-A115-4F1B-9194-84C43AA01118} = {8007CA3E-604C-480E-BA50-C612BD208FB0}
 	EndGlobalSection
 EndGlobal

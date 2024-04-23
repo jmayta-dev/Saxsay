@@ -1,19 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\chuya\src\MW.CHUYA.Domain\MW.CHUYA.Domain.csproj" />
-    <ProjectReference Include="..\..\..\..\sunqu\src\uom\MW.SUNQU.UOM.Domain\MW.SUNQU.UOM.Domain.csproj" />
-    <ProjectReference Include="..\..\MW.SAXSAY.Domain\MW.SAXSAY.Domain.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\..\chuya\src\MW.CHUYA.Domain\MW.CHUYA.Domain.csproj" />
+        <ProjectReference
+            Include="..\..\..\..\sunqu\src\uom\MW.SUNQU.UOM.Domain\MW.SUNQU.UOM.Domain.csproj" />
+        <ProjectReference Include="..\..\MW.SAXSAY.Domain\MW.SAXSAY.Domain.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.2.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="MediatR" Version="12.2.0" />
+    </ItemGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="MW.SAXSAY.Domain">
+            <HintPath>..\..\MW.SAXSAY.Domain\bin\Debug\net6.0\MW.SAXSAY.Domain.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
 </Project>

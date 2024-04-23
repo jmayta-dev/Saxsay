@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MW.SAXSAY.Ingredients.Application.UseCases.Commands;
+using MW.SAXSAY.Ingredients.Application.UseCases.Queries;
 
 namespace MW.SAXSAY.Ingredients.Services.Api.Controllers
 {
@@ -27,6 +28,13 @@ namespace MW.SAXSAY.Ingredients.Services.Api.Controllers
         #endregion
 
         #region Methods
+        [HttpGet]
+        public async Task<IActionResult> ListIngredients()
+        {
+            var response = await _mediator.Send(new GetAllIngredientsQuery());
+            return Ok(response);
+        }
+
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterIngredient([FromBody] RegisterIngredientCommand command)
         {

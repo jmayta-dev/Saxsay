@@ -20,12 +20,12 @@ public sealed class Recipe : IEntity<RecipeId>
     #endregion
 
     #region Constructor
-    private Recipe() {}
+    private Recipe() { }
     #endregion
 
     #region Methods
     /// <summary>
-    /// Add ingredient to recipe ingredient list
+    /// Adds ingredient to recipe ingredient list
     /// </summary>
     /// <param name="ingredient"></param>
     public void AddIngredient(Ingredient ingredient)
