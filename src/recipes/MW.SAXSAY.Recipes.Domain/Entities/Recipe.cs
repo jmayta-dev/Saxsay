@@ -1,14 +1,12 @@
-using System.Runtime.CompilerServices;
-using MW.CHUYA.Domain.Common.Interfaces;
+using MW.SAXSAY.Domain.Common;
 using MW.SAXSAY.Ingredients.Domain.Entities;
 using MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace MW.SAXSAY.Recipes.Domain.Entities;
 
-public sealed class Recipe : IEntity<RecipeId>
+public sealed class Recipe : BaseEntity<RecipeId>
 {
-    #region Properties & Variables
-    public RecipeId? Id { get; set; }
+    #region Properties
     public string? Name { get; set; }
     public PreparationInfo? PreparationInfo { get; set; }
     public int? Portions { get; set; }
@@ -16,7 +14,6 @@ public sealed class Recipe : IEntity<RecipeId>
     public string? CommentsSuggestions { get; set; }
     private readonly List<Ingredient> _ingredients = new();
     public IReadOnlyCollection<Ingredient>? Ingredients => _ingredients.AsReadOnly();
-
     #endregion
 
     #region Constructor
@@ -46,12 +43,17 @@ public sealed class Recipe : IEntity<RecipeId>
     {
         _ingredients.Remove(ingredient);
     }
+
+    public void ClearIngredients()
+    {
+        _ingredients.Clear();
+    }
     #endregion
 
     /// <summary>
     /// Recipe Builder
     /// </summary>
-    public class Builder
+    public class RecipeBuilder
     {
         #region Properties & Variables
         //
@@ -61,7 +63,7 @@ public sealed class Recipe : IEntity<RecipeId>
         #endregion
 
         #region Constructor
-        public Builder()
+        public RecipeBuilder()
         {
             Reset();
         }

@@ -1,12 +1,11 @@
-using MW.CHUYA.Domain.Common.Interfaces;
+using MW.SAXSAY.Domain.Common;
 using MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace recipes.MW.SAXSAY.Recipes.Domain.Entities;
 
-public class UnitOfMeasure: IEntity<UnitOfMeasureId>
+public class UnitOfMeasure: BaseEntity<UnitOfMeasureId>
 {
     #region Properties
-    public UnitOfMeasureId? Id { get; set; }
     public string Name { get; set; }
     public string? PluralName { get; set; }
     public string Abbreviation { get; set; }

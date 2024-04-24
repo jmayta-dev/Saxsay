@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\ingredients\MW.SAXSAY.Ingredients.Domain\MW.SAXSAY.Ingredients.Domain.csproj" />
-    <ProjectReference Include="..\..\..\..\chuya\src\MW.CHUYA.Domain\MW.CHUYA.Domain.csproj" />
+    <ProjectReference Include="..\..\MW.SAXSAY.Domain\MW.SAXSAY.Domain.csproj" />
   </ItemGroup>
 
 </Project>
