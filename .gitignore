@@ -488,3 +488,4 @@ TODO
 
 # Databases
 **/*.Database.*/data
+*.db
