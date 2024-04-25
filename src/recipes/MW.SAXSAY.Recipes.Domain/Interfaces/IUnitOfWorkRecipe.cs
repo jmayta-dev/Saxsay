@@ -1,11 +1,11 @@
-namespace MW.SAXSAY.Ingredients.Domain.Interfaces;
+namespace MW.SAXSAY.Recipes.Domain.Interfaces;
 
-public interface IUnitOfWorkIngredient : IDisposable
+public interface IUnitOfWorkRecipe : IDisposable
 {
     //
     // repositories
     //
-    public IIngredientRepository IngredientRepository { get; }
+    public IRecipeRepository RecipeRepository { get; }
     //
     // methods
     //

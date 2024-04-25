@@ -1,5 +1,4 @@
 using MW.SAXSAY.Domain.Common;
-using MW.SAXSAY.Ingredients.Domain.Entities;
 using MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace MW.SAXSAY.Recipes.Domain.Entities;

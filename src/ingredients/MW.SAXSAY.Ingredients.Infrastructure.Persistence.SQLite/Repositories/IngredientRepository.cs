@@ -63,7 +63,6 @@ public class IngredientRepository : Repository, IIngredientRepository
                 var ingredient = ingredientBuilder.Build();
 
                 ingredients.Add(ingredient);
-                //                ingredientBuilder.WithBaseUnit(reader.GetInt64(reader.GetOrdinal("BaseUnitId")));
             }
         }
         return ingredients;
