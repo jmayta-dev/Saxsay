@@ -3,14 +3,14 @@ using MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace MW.SAXSAY.Recipes.Domain.Interfaces;
 
-public interface IRecipeRepository : IDisposable
+public interface IRecipeRepository
 {
-    Task<Recipe> GetAsync(
+    Task<Recipe> GetByIdAsync(
         RecipeId recipeId,
         CancellationToken cancellationToken = default);
     Task<IEnumerable<Recipe>> GetAllAsync(
         CancellationToken cancellationToken = default);
-    Task<RecipeId?> CreateAsync(
+    Task<RecipeId?> RegisterAsync(
         Recipe recipe,
         CancellationToken cancellationToken = default);
     Task<bool> UpdateAsync(

@@ -6,6 +6,7 @@ public interface IUnitOfWorkRecipe : IDisposable
     // repositories
     //
     public IRecipeRepository RecipeRepository { get; }
+    public IIngredientRepository IngredientRepository { get; }
     //
     // methods
     //

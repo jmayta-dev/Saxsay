@@ -1,3 +1,6 @@
 namespace MW.SAXSAY.Recipes.Domain.ValueObjects;
 
-public record RecipeId(int Value);
+public record RecipeId
+{
+    public int Value { get; init; }
+}

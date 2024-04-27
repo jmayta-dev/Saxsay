@@ -52,6 +52,7 @@ public class RegisterIngredientCommandHandler
         catch (Exception ex)
         {
             response.Message = ex.Message;
+            await _unitOfWorkIngredient.RollbackAsync(cancellationToken);
             throw;
         }
 

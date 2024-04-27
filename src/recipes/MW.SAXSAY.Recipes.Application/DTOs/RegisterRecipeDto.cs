@@ -6,5 +6,5 @@ public record RegisterRecipeDto
 {
     public string? Name { get; set; }
     public int? Portions { get; set; }
-    public IEnumerable<RegisterIngredientDto>? Ingredients { get; set; }
+    public IEnumerable<RegisterIngredientDto> Ingredients { get; set; } = new List<RegisterIngredientDto>();
 }
