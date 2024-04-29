@@ -2,7 +2,7 @@ using System.Data;
 using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Configuration;
 
-namespace MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.Context;
+namespace MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.Context;
 
 public class IngredientDbContext
 {

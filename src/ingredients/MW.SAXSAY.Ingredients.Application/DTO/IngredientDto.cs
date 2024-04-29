@@ -1,4 +1,4 @@
 
-namespace MW.SAXSAY.Ingredients.Application.DTO;
+namespace MW.SAXSAY.RawMaterials.Application.DTO;
 
-public record IngredientDto(long Id, string Description, bool IsActive, int BaseUnitId);
+public record RawMaterialDto(long Id, string Description, bool IsActive, int BaseUnitId);

@@ -1,6 +1,6 @@
 using Microsoft.Data.Sqlite;
 
-namespace MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.Resitories;
+namespace MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.Resitories;
 
 public abstract class Repository
 {

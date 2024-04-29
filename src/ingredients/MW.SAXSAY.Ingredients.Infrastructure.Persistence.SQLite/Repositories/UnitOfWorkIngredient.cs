@@ -1,8 +1,8 @@
 using Microsoft.Data.Sqlite;
-using MW.SAXSAY.Ingredients.Domain.Interfaces;
-using MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.Context;
+using MW.SAXSAY.RawMaterials.Domain.Interfaces;
+using MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.Context;
 
-namespace MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.Resitories;
+namespace MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.Resitories;
 
 public class UnitOfWorkIngredient : IUnitOfWorkIngredient
 {

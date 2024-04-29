@@ -1,5 +1,5 @@
-using MW.SAXSAY.Ingredients.Application;
-using MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite;
+using MW.SAXSAY.RawMaterials.Application;
+using MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

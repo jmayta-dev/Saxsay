@@ -1,7 +1,7 @@
 using MW.SAXSAY.Domain.Common;
-using MW.SAXSAY.Ingredients.Domain.ValueObjects;
+using MW.SAXSAY.RawMaterials.Domain.ValueObjects;
 
-namespace MW.SAXSAY.Ingredients.Domain.Entities;
+namespace MW.SAXSAY.RawMaterials.Domain.Entities;
 
 public class Ingredient : BaseEntity<IngredientId>
 {

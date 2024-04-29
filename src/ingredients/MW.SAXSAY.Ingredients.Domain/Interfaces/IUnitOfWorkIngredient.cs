@@ -1,4 +1,4 @@
-namespace MW.SAXSAY.Ingredients.Domain.Interfaces;
+namespace MW.SAXSAY.RawMaterials.Domain.Interfaces;
 
 public interface IUnitOfWorkIngredient : IDisposable
 {

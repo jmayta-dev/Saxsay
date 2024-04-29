@@ -1,4 +1,4 @@
-using MW.SAXSAY.Ingredients.Domain.Entities;
+using MW.SAXSAY.RawMaterials.Domain.Entities;
 
 namespace MW.SAXSAY.Recipes.Application.DTOs;
 

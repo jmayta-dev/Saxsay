@@ -2,11 +2,11 @@
 using System.Data;
 using System.Runtime.CompilerServices;
 using Microsoft.Data.Sqlite;
-using MW.SAXSAY.Ingredients.Domain.Entities;
-using MW.SAXSAY.Ingredients.Domain.Interfaces;
-using MW.SAXSAY.Ingredients.Domain.ValueObjects;
+using MW.SAXSAY.RawMaterials.Domain.Entities;
+using MW.SAXSAY.RawMaterials.Domain.Interfaces;
+using MW.SAXSAY.RawMaterials.Domain.ValueObjects;
 
-namespace MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.Resitories;
+namespace MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.Resitories;
 
 public class IngredientRepository : Repository, IIngredientRepository
 {

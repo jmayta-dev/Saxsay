@@ -1,12 +1,12 @@
 using System.Data;
 using MediatR;
 using MW.SAXSAY.Domain.Common;
-using MW.SAXSAY.Ingredients.Application.DTO;
-using MW.SAXSAY.Ingredients.Domain.Interfaces;
+using MW.SAXSAY.RawMaterials.Application.DTO;
+using MW.SAXSAY.RawMaterials.Domain.Interfaces;
 
-namespace MW.SAXSAY.Ingredients.Application.UseCases.Queries;
+namespace MW.SAXSAY.RawMaterials.Application.UseCases.Queries;
 
-public class GetAllIngredientsQueryHandler : IRequestHandler<GetAllIngredientsQuery, BaseResponse<IEnumerable<IngredientDto>>>
+public class GetAllIngredientsQueryHandler : IRequestHandler<GetAllIngredientsQuery, BaseResponse<IEnumerable<RawMaterialDto>>>
 {
     private readonly IUnitOfWorkIngredient _unitOfWorkIngredient;
 
@@ -17,9 +17,9 @@ public class GetAllIngredientsQueryHandler : IRequestHandler<GetAllIngredientsQu
             throw new ArgumentNullException(nameof(unitOfWorkIngredient));
     }
 
-    public async Task<BaseResponse<IEnumerable<IngredientDto>>> Handle(GetAllIngredientsQuery request, CancellationToken cancellationToken)
+    public async Task<BaseResponse<IEnumerable<RawMaterialDto>>> Handle(GetAllIngredientsQuery request, CancellationToken cancellationToken)
     {
-        var response = new BaseResponse<IEnumerable<IngredientDto>>();
+        var response = new BaseResponse<IEnumerable<RawMaterialDto>>();
         try
         {
             var ingredients =
@@ -30,9 +30,9 @@ public class GetAllIngredientsQueryHandler : IRequestHandler<GetAllIngredientsQu
             if (ingredients is not null)
             {
                 // parse Ingredient to IngredientDto
-                List<IngredientDto> ingredientsDto =
+                List<RawMaterialDto> ingredientsDto =
                 ingredients.Select(
-                    i => new IngredientDto(i.Id!.Value, i.Description, i.IsActive, i.BaseUnitId)
+                    i => new RawMaterialDto(i.Id!.Value, i.Description, i.IsActive, i.BaseUnitId)
                 ).ToList();
 
                 response.IsSuccess = true;

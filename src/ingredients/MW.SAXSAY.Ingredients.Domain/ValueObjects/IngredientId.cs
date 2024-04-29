@@ -1,3 +1,3 @@
-namespace MW.SAXSAY.Ingredients.Domain.ValueObjects;
+namespace MW.SAXSAY.RawMaterials.Domain.ValueObjects;
 
 public record IngredientId(long Value);

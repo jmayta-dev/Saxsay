@@ -1,9 +1,9 @@
 
 using MediatR;
 using MW.SAXSAY.Domain.Common;
-using MW.SAXSAY.Ingredients.Application.DTO;
+using MW.SAXSAY.RawMaterials.Application.DTO;
 
-namespace MW.SAXSAY.Ingredients.Application.UseCases.Queries;
+namespace MW.SAXSAY.RawMaterials.Application.UseCases.Queries;
 
 public record GetAllIngredientsQuery()
-    : IRequest<BaseResponse<IEnumerable<IngredientDto>>>;
+    : IRequest<BaseResponse<IEnumerable<RawMaterialDto>>>;

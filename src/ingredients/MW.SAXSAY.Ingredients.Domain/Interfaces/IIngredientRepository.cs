@@ -1,8 +1,8 @@
 
-using MW.SAXSAY.Ingredients.Domain.Entities;
-using MW.SAXSAY.Ingredients.Domain.ValueObjects;
+using MW.SAXSAY.RawMaterials.Domain.Entities;
+using MW.SAXSAY.RawMaterials.Domain.ValueObjects;
 
-namespace MW.SAXSAY.Ingredients.Domain.Interfaces;
+namespace MW.SAXSAY.RawMaterials.Domain.Interfaces;
 
 public interface IIngredientRepository
 {

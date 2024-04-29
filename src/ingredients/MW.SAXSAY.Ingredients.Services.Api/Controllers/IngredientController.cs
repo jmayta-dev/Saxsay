@@ -1,10 +1,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MW.SAXSAY.Ingredients.Application.UseCases.Commands;
-using MW.SAXSAY.Ingredients.Application.UseCases.Queries;
+using MW.SAXSAY.RawMaterials.Application.UseCases.Commands;
+using MW.SAXSAY.RawMaterials.Application.UseCases.Queries;
 
-namespace MW.SAXSAY.Ingredients.Services.Api.Controllers
+namespace MW.SAXSAY.RawMaterials.Services.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -36,7 +36,7 @@ namespace MW.SAXSAY.Ingredients.Services.Api.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> RegisterIngredient([FromBody] RegisterIngredientCommand command)
+        public async Task<IActionResult> RegisterIngredient([FromBody] RegisterRawMaterialCommand command)
         {
             var response = await _mediator.Send(command);
             return Ok(response);

@@ -1,9 +1,9 @@
 using Microsoft.Extensions.DependencyInjection;
-using MW.SAXSAY.Ingredients.Domain.Interfaces;
-using MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.Context;
-using MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite.Resitories;
+using MW.SAXSAY.RawMaterials.Domain.Interfaces;
+using MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.Context;
+using MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.Resitories;
 
-namespace MW.SAXSAY.Ingredients.Infrastructure.Persistence.SQLite;
+namespace MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite;
 
 public static class DependencyInjection
 {

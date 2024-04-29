@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MW.SAXSAY.Ingredients.Application;
+namespace MW.SAXSAY.RawMaterials.Application;
 
 public static class DependencyInjection
 {

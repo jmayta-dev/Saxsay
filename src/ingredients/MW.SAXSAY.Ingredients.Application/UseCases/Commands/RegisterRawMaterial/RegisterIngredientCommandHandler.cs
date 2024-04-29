@@ -1,13 +1,13 @@
 using MediatR;
 using MW.SAXSAY.Domain.Common;
-using MW.SAXSAY.Ingredients.Domain.Entities;
-using MW.SAXSAY.Ingredients.Domain.Interfaces;
-using MW.SAXSAY.Ingredients.Domain.ValueObjects;
+using MW.SAXSAY.RawMaterials.Domain.Entities;
+using MW.SAXSAY.RawMaterials.Domain.Interfaces;
+using MW.SAXSAY.RawMaterials.Domain.ValueObjects;
 
-namespace MW.SAXSAY.Ingredients.Application.UseCases.Commands;
+namespace MW.SAXSAY.RawMaterials.Application.UseCases.Commands;
 
 public class RegisterIngredientCommandHandler
-    : IRequestHandler<RegisterIngredientCommand, BaseResponse<IngredientId>>
+    : IRequestHandler<RegisterRawMaterialCommand, BaseResponse<IngredientId>>
 {
     #region Properties & Variables
     private readonly IUnitOfWorkIngredient _unitOfWorkIngredient;
@@ -22,7 +22,7 @@ public class RegisterIngredientCommandHandler
 
     #region Methods
     public async Task<BaseResponse<IngredientId>> Handle(
-        RegisterIngredientCommand request,
+        RegisterRawMaterialCommand request,
         CancellationToken cancellationToken)
     {
         var response = new BaseResponse<IngredientId>();
