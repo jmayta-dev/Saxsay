@@ -1,9 +1,9 @@
 using MediatR;
 using MW.SAXSAY.Domain.Common;
 using MW.SAXSAY.Recipes.Application.DTOs;
+using MW.SAXSAY.Recipes.Application.Extensions;
 using MW.SAXSAY.Recipes.Domain.Entities;
 using MW.SAXSAY.Recipes.Domain.Interfaces;
-using MW.SAXSAY.Recipes.Domain.ValueObjects;
 
 namespace MW.SAXSAY.Recipes.Application.UseCases.Queries.GetAllQuery;
 
@@ -18,7 +18,7 @@ public class GetAllRecipesQueryHandler
     //
     // privates
     //
-    
+
     //
     // publics
     //
@@ -32,30 +32,6 @@ public class GetAllRecipesQueryHandler
     #endregion
 
     #region Mapping
-    private IngredientDto ToIngredientDto(Ingredient ingredient)
-    {
-        return new IngredientDto {
-            RawMaterialId = ingredient.RawMaterialId,
-            Quantity = ingredient.Quantity,
-            UnitOfMeasureId = ingredient.UnitOfMeasureId
-        };
-    }
-
-    private RecipeDto ToRecipeDto(Recipe recipe)
-    {
-        List<IngredientDto> ingredients = new();
-        if (recipe.Ingredients is not null && recipe.Ingredients.Any())
-        {
-            ingredients = recipe.Ingredients.Select(i => ToIngredientDto(i)).ToList();
-        }
-
-        return new RecipeDto
-        {
-            Id = recipe.Id?.Value,
-            Name = recipe.Name,
-            Ingredients = ingredients
-        };
-    }
     #endregion
 
     #region Methods
@@ -67,10 +43,10 @@ public class GetAllRecipesQueryHandler
 
         try
         {
-            var recipeList =
+            IEnumerable<Recipe> recipes =
                 await _unitOfWorkRecipe.RecipeRepository.GetAllAsync(cancellationToken);
 
-            response.Data = recipeList.Select(r => ToRecipeDto(r)).ToList();
+            response.Data = recipes.Select(recipe => recipe.ToRecipeDto()).ToList();
             response.Message = "Success!";
             response.IsSuccess = true;
         }
