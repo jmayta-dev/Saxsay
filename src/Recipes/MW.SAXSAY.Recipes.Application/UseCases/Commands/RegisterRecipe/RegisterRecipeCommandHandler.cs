@@ -48,26 +48,27 @@ public class RegisterRecipeCommandHandler : IRequestHandler<RegisterRecipeComman
                 response.Message = "Failed to register recipe.";
                 return response;
             }
-
-
-
-            foreach (var ingredient in request.Ingredients)
+            // register recipe ingredients
+            if (request.Ingredients is not null)
             {
-                var newIngredient = new Ingredient
+                foreach (var ingredient in request.Ingredients)
                 {
-                    RecipeId = recipeId.Value,
-                    RawMaterialId = ingredient.RawMaterialId,
-                    Quantity = ingredient.Quantity,
-                    UnitOfMeasureId = ingredient.UnitOfMeasureId
-                };
-                recipe.AddIngredient(newIngredient);
+                    var newIngredient = new Ingredient
+                    {
+                        RecipeId = recipeId.Value,
+                        RawMaterialId = ingredient.RawMaterialId,
+                        Quantity = ingredient.Quantity,
+                        UnitOfMeasureId = ingredient.UnitOfMeasureId
+                    };
+                    recipe.AddIngredient(newIngredient);
 
-                // register the new ingredient
-                if (!await _unitOfWorkRecipe.IngredientRepository.RegisterAsync(newIngredient, cancellationToken))
-                {
-                    response.IsSuccess = false;
-                    response.Message = "Failed to register ingredient.";
-                    return response;
+                    // register the new ingredient
+                    if (!await _unitOfWorkRecipe.IngredientRepository.RegisterAsync(newIngredient, cancellationToken))
+                    {
+                        response.IsSuccess = false;
+                        response.Message = "Failed to register ingredient.";
+                        return response;
+                    }
                 }
             }
             await _unitOfWorkRecipe.SaveChangesAsync(cancellationToken);
