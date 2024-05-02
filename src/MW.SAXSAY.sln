@@ -3,23 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Domain", "MW.SAXSAY.Domain\MW.SAXSAY.Domain.csproj", "{8863ECC9-C3BE-4D93-9300-DC279F9AFCD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW.SAXSAY.Domain", "MW.SAXSAY.Domain\MW.SAXSAY.Domain.csproj", "{8863ECC9-C3BE-4D93-9300-DC279F9AFCD2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recipes", "Recipes", "{7F76AE0D-C57F-44C3-B775-82D4F5FDBA79}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Recipes.Application", "Recipes\MW.SAXSAY.Recipes.Application\MW.SAXSAY.Recipes.Application.csproj", "{1313AE66-D9BF-4EBC-8F41-2C4D00681365}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW.SAXSAY.Recipes.Application", "Recipes\MW.SAXSAY.Recipes.Application\MW.SAXSAY.Recipes.Application.csproj", "{1313AE66-D9BF-4EBC-8F41-2C4D00681365}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.Recipes.Domain", "Recipes\MW.SAXSAY.Recipes.Domain\MW.SAXSAY.Recipes.Domain.csproj", "{A761DA4F-2892-43D3-B964-05B4E3EBC4A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW.SAXSAY.Recipes.Domain", "Recipes\MW.SAXSAY.Recipes.Domain\MW.SAXSAY.Recipes.Domain.csproj", "{A761DA4F-2892-43D3-B964-05B4E3EBC4A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RawMaterials", "RawMaterials", "{260BF85C-7CB4-4C73-B89E-DDDE5BE12F01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.RawMaterials.Application", "RawMaterials\MW.SAXSAY.RawMaterials.Application\MW.SAXSAY.RawMaterials.Application.csproj", "{21634F26-F20D-4A68-AAD8-7916ABF0229A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW.SAXSAY.RawMaterials.Application", "RawMaterials\MW.SAXSAY.RawMaterials.Application\MW.SAXSAY.RawMaterials.Application.csproj", "{21634F26-F20D-4A68-AAD8-7916ABF0229A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.RawMaterials.Domain", "RawMaterials\MW.SAXSAY.RawMaterials.Domain\MW.SAXSAY.RawMaterials.Domain.csproj", "{E7E05D26-F2FC-4F7D-ABCC-F85B8F51A7AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW.SAXSAY.RawMaterials.Domain", "RawMaterials\MW.SAXSAY.RawMaterials.Domain\MW.SAXSAY.RawMaterials.Domain.csproj", "{E7E05D26-F2FC-4F7D-ABCC-F85B8F51A7AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite", "RawMaterials\MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite\MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.csproj", "{49116A35-FD1B-406C-BA73-09AEB1578421}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite", "RawMaterials\MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite\MW.SAXSAY.RawMaterials.Infrastructure.Persistence.SQLite.csproj", "{49116A35-FD1B-406C-BA73-09AEB1578421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MW.SAXSAY.RawMaterials.Services.Api", "RawMaterials\MW.SAXSAY.RawMaterials.Services.Api\MW.SAXSAY.RawMaterials.Services.Api.csproj", "{80A2A952-38C2-41B4-BB2F-0DFCE48BC668}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW.SAXSAY.RawMaterials.Services.Api", "RawMaterials\MW.SAXSAY.RawMaterials.Services.Api\MW.SAXSAY.RawMaterials.Services.Api.csproj", "{80A2A952-38C2-41B4-BB2F-0DFCE48BC668}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MW.SAXSAY.Presentation.WebApp", "MW.SAXSAY.Presentation.WebApp\MW.SAXSAY.Presentation.WebApp.csproj", "{D51EA9E4-B7A1-46BC-96AB-5827790E133D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Saxsay", "Saxsay", "{F8E5F8BB-AD95-4BB9-8C7D-C4299CC8C507}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,16 +59,22 @@ Global
 		{80A2A952-38C2-41B4-BB2F-0DFCE48BC668}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80A2A952-38C2-41B4-BB2F-0DFCE48BC668}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80A2A952-38C2-41B4-BB2F-0DFCE48BC668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51EA9E4-B7A1-46BC-96AB-5827790E133D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51EA9E4-B7A1-46BC-96AB-5827790E133D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51EA9E4-B7A1-46BC-96AB-5827790E133D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51EA9E4-B7A1-46BC-96AB-5827790E133D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{8863ECC9-C3BE-4D93-9300-DC279F9AFCD2} = {F8E5F8BB-AD95-4BB9-8C7D-C4299CC8C507}
 		{1313AE66-D9BF-4EBC-8F41-2C4D00681365} = {7F76AE0D-C57F-44C3-B775-82D4F5FDBA79}
 		{A761DA4F-2892-43D3-B964-05B4E3EBC4A7} = {7F76AE0D-C57F-44C3-B775-82D4F5FDBA79}
 		{21634F26-F20D-4A68-AAD8-7916ABF0229A} = {260BF85C-7CB4-4C73-B89E-DDDE5BE12F01}
 		{E7E05D26-F2FC-4F7D-ABCC-F85B8F51A7AF} = {260BF85C-7CB4-4C73-B89E-DDDE5BE12F01}
 		{49116A35-FD1B-406C-BA73-09AEB1578421} = {260BF85C-7CB4-4C73-B89E-DDDE5BE12F01}
 		{80A2A952-38C2-41B4-BB2F-0DFCE48BC668} = {260BF85C-7CB4-4C73-B89E-DDDE5BE12F01}
+		{D51EA9E4-B7A1-46BC-96AB-5827790E133D} = {F8E5F8BB-AD95-4BB9-8C7D-C4299CC8C507}
 	EndGlobalSection
 EndGlobal
