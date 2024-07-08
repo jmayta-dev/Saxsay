@@ -6,7 +6,9 @@ public static class IdentifierGenerators
     {
         public static string Generate()
         {
-            throw new NotImplementedException();
+            var timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            var randomString = StringHelpers.RandomString(StringHelpers.PrintableSafe, 8);
+            return $"{timestamp}-{randomString}";
         }
     }
 }
