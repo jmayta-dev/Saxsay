@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\MW.SAXSAY.Shared.csproj" />
+    <ProjectReference Include="..\RawMaterial\Domain\MW.SAXSAY.RawMaterial.Domain.csproj" />
   </ItemGroup>
 
 </Project>

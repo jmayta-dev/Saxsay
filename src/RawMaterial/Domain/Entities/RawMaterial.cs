@@ -1,47 +1,54 @@
 using MW.SAXSAY.Shared.Abstractions;
+using MW.SAXSAY.Shared.Contracts;
+using MW.SAXSAY.Shared.Helpers;
 
 namespace MW.SAXSAY.RawMaterial.Domain.Entities;
 
 public sealed class RawMaterial : Entity
 {
     #region Properties & Variables
+    //
+    // public
+    //
     public string? Name { get; set; }
     #endregion
 
     #region Constructor
-    private RawMaterial()
-    {
-    }
+    private RawMaterial() { }
     #endregion
 
-    public class Builder
+    /// <summary>
+    /// RawMaterial Builder
+    /// </summary>
+    public class Builder : IBuilder<RawMaterial>
     {
         #region Properties & Variables
-        private RawMaterial _rawMaterial;
-        private string _name;
+        private readonly RawMaterial _rawMaterial = new();
         #endregion
 
         #region Constructor
-        public Builder()
-        {
-
-        }
+        private Builder() { }
         #endregion
 
         #region Methods
+        // pseudo constructor
+        public static Builder Empty() => new();
+
         public RawMaterial Build()
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(_rawMaterial.Name))
+                throw new InvalidOperationException("Raw material's Name is required");
+
+            return _rawMaterial;
         }
 
-        public void Reset()
+        //
+        // building steps
+        //
+        public Builder WithName(string name)
         {
-            throw new NotImplementedException();
-        }
-
-        public void WithName(string name)
-        {
-            throw new NotImplementedException();
+            _rawMaterial.Name = name;
+            return this;
         }
         #endregion
     }
