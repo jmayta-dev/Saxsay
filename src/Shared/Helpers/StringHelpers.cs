@@ -11,9 +11,13 @@ public static class StringHelpers
 
     public static string RandomString(string stringCharacters, int length)
     {
+        if (length <= 0)
+            return string.Empty;
+
         Random random = new();
         return new string(
             Enumerable.Repeat(stringCharacters, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
+                .Select(s => s[random.Next(s.Length)])
+                .ToArray());
     }
 }
