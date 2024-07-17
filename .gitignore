@@ -487,3 +487,6 @@ $RECYCLE.BIN/
 TODO
 
 .sonarqube/
+
+# Others
+*.drawio.bkp
