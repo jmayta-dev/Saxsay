@@ -4,13 +4,13 @@ namespace MW.SAXSAY.Test.RawMaterial.Domain;
 
 public class EntitiesTest
 {
+
     [Fact]
-    public void Cannot_build_without_name()
+    public void Raw_material_cannot_build_without_name()
     {
         // Arrange
         var builder = DomainEntities.RawMaterial.Builder.Empty();
         // Act
-
         // Assert
         Assert.ThrowsAsync<InvalidOperationException>(() => Task.Run(() => builder.Build()));
     }
