@@ -1,6 +1,5 @@
 using MW.SAXSAY.Shared.Abstractions;
 using MW.SAXSAY.Shared.Contracts;
-using MW.SAXSAY.Shared.Helpers;
 
 namespace MW.SAXSAY.RawMaterial.Domain.Entities;
 
