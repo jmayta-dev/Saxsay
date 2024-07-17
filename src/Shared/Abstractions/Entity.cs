@@ -5,5 +5,10 @@ namespace MW.SAXSAY.Shared.Abstractions;
 
 public abstract class Entity : IEntity<string>
 {
-    public string? Id => IdentifierGenerators.TimePlusRandomGenerator.Generate();
+    public string? Id { get; init; }
+
+    protected Entity()
+    {
+        Id = IdentifierGenerators.TimePlusRandomGenerator.Generate();
+    }
 }
