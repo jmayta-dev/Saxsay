@@ -483,10 +483,14 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-# Saxsay
-TODO
+# Configuration
+appsettings*.json
 
+# sonarqube
 .sonarqube/
 
 # Others
 *.drawio.bkp
+
+# Saxsay
+TODO
