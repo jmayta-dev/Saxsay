@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <Compile Remove="UseCases\Commands\DeactivateRawMaterial\**" />
+    <Compile Remove="UseCases\Commands\RemoveRawMaterial\**" />
+    <Compile Remove="UseCases\Commands\UpdateRawMaterial\**" />
+    <EmbeddedResource Remove="UseCases\Commands\DeactivateRawMaterial\**" />
+    <EmbeddedResource Remove="UseCases\Commands\RemoveRawMaterial\**" />
+    <EmbeddedResource Remove="UseCases\Commands\UpdateRawMaterial\**" />
+    <None Remove="UseCases\Commands\DeactivateRawMaterial\**" />
+    <None Remove="UseCases\Commands\RemoveRawMaterial\**" />
+    <None Remove="UseCases\Commands\UpdateRawMaterial\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\MW.SAXSAY.RawMaterials.Domain.csproj" />
+    <ProjectReference Include="..\..\Shared\Core\MW.SAXSAY.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR" Version="12.4.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>
