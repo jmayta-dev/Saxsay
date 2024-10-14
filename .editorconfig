@@ -1,0 +1,14 @@
+root = true
+
+[*.cs]
+indent_style = space
+indent_size = 4
+
+dotnet_naming_symbols.private_methods.applicable_kinds = method
+dotnet_naming_symbols.private_methods.applicable_accessibilities = private
+
+dotnet_naming_style.camel_cased.capitalization = camel_case
+
+dotnet_naming_rule.control_events_lowercase.symbols = private_methods
+dotnet_naming_rule.control_events_lowercase.style = camel_cased
+dotnet_naming_rule.control_events_lowercase.severity = none
