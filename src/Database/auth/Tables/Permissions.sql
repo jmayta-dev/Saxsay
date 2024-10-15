@@ -1,0 +1,8 @@
+﻿CREATE TABLE [auth].[Permissions]
+(
+	[Id]		INT IDENTITY(1,1)	NOT NULL,
+	[Name]		VARCHAR(254)		NOT NULL,
+	[Codename]	VARCHAR(100)		NOT NULL,
+	[CreatedAt]	DATETIME			NOT NULL
+) ON [PRIMARY]
+GO
