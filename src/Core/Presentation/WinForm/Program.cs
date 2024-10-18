@@ -1,7 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MW.SAXSAY.Core.Presentation.WinForm;
-using MW.SAXSAY.RawMaterials.Presentation.WinForm;
 
 namespace MW.SAXSAY.Core.Presentation.WinForm;
 
@@ -17,11 +15,9 @@ static class Program
             .CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
             {
-                services
-                    .AddCoreServices()
-                    .AddRawMaterialServices();  // MW.RawMaterials feature
-
-            }).Build();
+                services.AddCoreServices();
+            })
+            .Build();
 
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
