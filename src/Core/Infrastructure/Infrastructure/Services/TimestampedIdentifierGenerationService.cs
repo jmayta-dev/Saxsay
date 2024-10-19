@@ -10,7 +10,7 @@ public class TimestampedIdentifierGenerationService : IIdentifierGenerationServi
         if (numericPortionLength < 15 || stringPortionLength < 6)
             throw new ArgumentException(string.Concat(
                 "The length of identifier parts (numeric and string) cannot be less ",
-                "than 15 or 8 respectively."));
+                "than 15 and 6 respectively."));
 
         string timestampString =
             DateTimeOffset
