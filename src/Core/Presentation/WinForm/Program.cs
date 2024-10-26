@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MW.SAXSAY.Core.Application;
 
 namespace MW.SAXSAY.Core.Presentation.WinForm;
 
@@ -15,7 +16,9 @@ static class Program
             .CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
             {
-                services.AddCoreServices();
+                services
+                    .AddCoreServices()          // MW.SAXSAY.Core
+                    .AddCoreApplicationLayer(); // MW.SAXSAY.Application
             })
             .Build();
 
@@ -26,7 +29,7 @@ static class Program
         // get login form
         var startupForm = host.Services.GetRequiredService<frmLogin>();
         // execute login form as entrypoint
-        Application.Run(startupForm);
+        System.Windows.Forms.Application.Run(startupForm);
     }
 
     static IServiceCollection AddCoreServices(this IServiceCollection services)

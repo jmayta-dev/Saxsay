@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\RawMaterials\Presentation\WinForm\MW.SAXSAY.RawMaterials.Presentation.WinForm.csproj" />
+    <ProjectReference Include="..\..\Application\MW.SAXSAY.Core.Application.csproj" />
   </ItemGroup>
 
   <ItemGroup>
