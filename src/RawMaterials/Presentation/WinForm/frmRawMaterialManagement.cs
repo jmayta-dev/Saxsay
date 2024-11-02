@@ -1,9 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using MW.SAXSAY.RawMaterials.Application.DTOs;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetAllRawMaterials;
-using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetRawMaterialsByFilter;
-using MW.SAXSAY.Shared.Extensions;
 using System.ComponentModel;
 
 namespace MW.SAXSAY.RawMaterials.Presentation.WinForm;
@@ -57,9 +54,22 @@ public partial class frmRawMaterialManagement : Form
         throw new NotImplementedException();
     }
 
-    private void btnSearch_Click(object sender, EventArgs e)
+    private async void btnSearch_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await SearchRawMaterials();
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    private async Task SearchRawMaterials()
+    {
+        var rawMaterials = await GetRawMaterials();
+        BindRawMaterialsDataGridView(rawMaterials);
     }
 
     private void btnRemove_Click(object sender, EventArgs e)
@@ -113,18 +123,48 @@ public partial class frmRawMaterialManagement : Form
     /// <summary>
     /// Bind data to data grid
     /// </summary>
-    private void BindDataGridView()
+    private void BindRawMaterialsDataGridView(IEnumerable<GetRawMaterialDTO> rawMaterials)
     {
-        dgvRawMaterials.DataSource = _rawMaterials;
+        dgvRawMaterials.DataSource = rawMaterials;
     }
 
     /// <summary>
-    /// Filter raw materials by description
+    /// Get raw materials
     /// </summary>
+    /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    private Task FilterRawMaterials()
+    private async Task<IEnumerable<GetRawMaterialDTO>> GetRawMaterials(CancellationToken cancellationToken = default)
+    {
+        string queryString = txtTextToSearch.Text.Trim();
+        if (string.IsNullOrWhiteSpace(queryString)) {
+            return await GetAllRawMaterials(cancellationToken);
+        }
+        else {
+            // TODO: pending implementation for filter
+            return [];
+        }
+    }
+
+    private IEnumerable<GetRawMaterialDTO> GetRawMaterialsByFilter(string queryString)
     {
         throw new NotImplementedException();
+    }
+
+    private async Task<IEnumerable<GetRawMaterialDTO>> GetAllRawMaterials(
+        CancellationToken cancellationToken = default)
+    {
+        var queryResult = await _sender
+           .Send(new GetAllRawMaterialsQuery(), cancellationToken);
+
+        if (queryResult.IsFailure || queryResult.Value == null)
+        {
+            MessageBox.Show(
+                "Obtener Materias Prima:",
+                "Ocurrió un error al intentar obtener la lista de Materias Prima.",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return [];
+        }
+        return queryResult.Value;
     }
 
     /// <summary>
@@ -156,11 +196,17 @@ public partial class frmRawMaterialManagement : Form
         throw new NotImplementedException();
     }
 
+    /// <summary>
+    /// Initialize form controls
+    /// </summary>
     private void InitializeControls()
     {
-        BindDataGridView();
+        BindRawMaterialsDataGridView([]);
     }
 
+    /// <summary>
+    /// Load form controls
+    /// </summary>
     private void LoadControls()
     {
         ConfigDataGridBehaviors();
