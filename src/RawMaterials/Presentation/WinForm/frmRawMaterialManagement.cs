@@ -2,6 +2,7 @@
 using MediatR;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetAllRawMaterials;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetRawMaterialsByFilter;
+using MW.SAXSAY.Shared.Helpers;
 using System.ComponentModel;
 
 namespace MW.SAXSAY.RawMaterials.Presentation.WinForm;
@@ -127,7 +128,19 @@ public partial class frmRawMaterialManagement : Form
     /// </summary>
     private void AddRawMaterial()
     {
-        throw new NotImplementedException();
+        var newRawMaterial = new GetRawMaterialDTO()
+        {
+            Id = IdentifierGenerators.TimePlusRandomGenerator.Generate(),
+            Name = string.Empty,
+            UNSPSC = string.Empty,
+            UNSPSCDescription = string.Empty,
+            IsEnabled = true
+        };
+        _rawMaterials.Add(newRawMaterial);
+        dgvRawMaterials.CurrentCell = dgvRawMaterials
+            .Rows[new Index(1, true)]
+            .Cells[colName.Index];
+        dgvRawMaterials.BeginEdit(true);
     }
 
     /// <summary>
@@ -215,7 +228,7 @@ public partial class frmRawMaterialManagement : Form
     /// </summary>
     private void InitializeControls()
     {
-        BindRawMaterialsDataGridView([]);
+        BindRawMaterialsDataGridView(_rawMaterials);
     }
 
     /// <summary>

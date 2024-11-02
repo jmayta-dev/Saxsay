@@ -70,6 +70,7 @@
             btnAdd.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnAdd.Font = new Font("Liberation Sans Narrow", 9F);
             btnAdd.Image = Properties.Resources.Add;
+            btnAdd.ImageAlign = ContentAlignment.MiddleLeft;
             btnAdd.Location = new Point(673, 6);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(84, 26);
@@ -84,6 +85,7 @@
             btnRemove.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnRemove.AutoSize = true;
             btnRemove.Image = Properties.Resources.Remove;
+            btnRemove.ImageAlign = ContentAlignment.MiddleLeft;
             btnRemove.Location = new Point(673, 38);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new Size(84, 26);
@@ -97,7 +99,8 @@
             // btnDisable
             // 
             btnDisable.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnDisable.Image = Properties.Resources.CheckBoxDisabled;
+            btnDisable.Image = Properties.Resources.CheckBoxUnchecked;
+            btnDisable.ImageAlign = ContentAlignment.MiddleLeft;
             btnDisable.Location = new Point(673, 359);
             btnDisable.Name = "btnDisable";
             btnDisable.Size = new Size(84, 26);
@@ -148,6 +151,7 @@
             dgvRawMaterials.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvRawMaterials.Location = new Point(6, 6);
             dgvRawMaterials.Name = "dgvRawMaterials";
+            dgvRawMaterials.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRawMaterials.Size = new Size(661, 379);
             dgvRawMaterials.TabIndex = 19;
             dgvRawMaterials.KeyPress += dgvRawMaterials_KeyPress;
@@ -157,6 +161,7 @@
             colId.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             colId.HeaderText = "Id";
             colId.Name = "colId";
+            colId.ReadOnly = true;
             colId.ToolTipText = "Identificador";
             colId.Width = 120;
             // 
@@ -186,6 +191,7 @@
             colCreatedAt.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             colCreatedAt.HeaderText = "Fec. Registro";
             colCreatedAt.Name = "colCreatedAt";
+            colCreatedAt.ReadOnly = true;
             colCreatedAt.ToolTipText = "Fecha de Registro";
             colCreatedAt.Width = 80;
             // 
@@ -193,6 +199,7 @@
             // 
             colUpdatedAt.HeaderText = "Fec. Actualización";
             colUpdatedAt.Name = "colUpdatedAt";
+            colUpdatedAt.ReadOnly = true;
             colUpdatedAt.ToolTipText = "Fecha de Actualización";
             colUpdatedAt.Visible = false;
             // 
@@ -201,6 +208,7 @@
             colIsEnabled.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             colIsEnabled.HeaderText = "Act.";
             colIsEnabled.Name = "colIsEnabled";
+            colIsEnabled.ReadOnly = true;
             colIsEnabled.Resizable = DataGridViewTriState.True;
             colIsEnabled.SortMode = DataGridViewColumnSortMode.Automatic;
             colIsEnabled.ToolTipText = "Está Activo";
