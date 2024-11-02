@@ -34,7 +34,6 @@
     <ProjectReference Include="..\..\..\Shared\Presentation\WinForm\MW.SAXSAY.Shared.WinForm.csproj" />
     <ProjectReference Include="..\..\Application\MW.SAXSAY.RawMaterials.Application.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Persistence\MW.SAXSAY.RawMaterials.Persistence.csproj" />
-    <ProjectReference Include="..\..\..\Shared\Presentation\WinForm\MW.SAXSAY.Shared.WinForm.csproj" />
   </ItemGroup>
 
   <ItemGroup>
