@@ -105,7 +105,7 @@
             btnDisable.Name = "btnDisable";
             btnDisable.Size = new Size(84, 26);
             btnDisable.TabIndex = 3;
-            btnDisable.Text = "Desactivar";
+            btnDisable.Text = "Deshabilitar";
             btnDisable.TextAlign = ContentAlignment.MiddleRight;
             btnDisable.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDisable.UseVisualStyleBackColor = true;

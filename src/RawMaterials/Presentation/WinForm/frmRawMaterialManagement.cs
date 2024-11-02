@@ -53,7 +53,34 @@ public partial class frmRawMaterialManagement : Form
 
     private void btnDisable_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        if (dgvRawMaterials.SelectedRows.Count > 0 &&
+            dgvRawMaterials.SelectedRows[0].Index >= 0)
+        {
+            var dialogResult = MessageBox.Show(
+                "Deshabilitar Materias Prima:",
+                "¿Está seguro de deshabilitar la(s) Materia(s) Prima seleccionada(s)?",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.No) return;
+
+            List<GetRawMaterialDTO> rawMaterialsSelected = [];
+            foreach (DataGridViewRow row in dgvRawMaterials.SelectedRows)
+            {
+                if (row.DataBoundItem is GetRawMaterialDTO rawMaterial)
+                {
+                    rawMaterial.IsEnabled = false;
+                    rawMaterialsSelected.Add(rawMaterial);
+                }
+            }
+
+            dgvRawMaterials.Refresh();
+        }
+        else
+        {
+            MessageBox.Show(
+                "Deshabilitar Materia(s) Prima:",
+                "Primero debe seleccionar al menos un elemento para deshabilitar.",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 
     private async void btnSearch_Click(object sender, EventArgs e)
