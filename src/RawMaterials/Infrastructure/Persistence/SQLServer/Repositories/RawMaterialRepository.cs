@@ -1,5 +1,4 @@
 using Microsoft.Data.SqlClient;
-using Microsoft.Win32.SafeHandles;
 using MW.SAXSAY.RawMaterials.Application.Contracts;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetAllRawMaterials;
 using System.Data;
@@ -50,6 +49,34 @@ public class RawMaterialRepository : IRawMaterialRepository
 
         using SqlCommand command = new(sp, _connection);
         command.CommandType = CommandType.StoredProcedure;
+
+        using SqlDataReader reader = await command.ExecuteReaderAsync(cancellationToken);
+        while (await reader.ReadAsync(cancellationToken))
+        {
+            var rawMaterial = new GetRawMaterialDTO
+            {
+                Id = reader.GetString(reader.GetOrdinal("Id")),
+                Name = reader.GetString(reader.GetOrdinal("Name")),
+                UNSPSC = reader.GetString(reader.GetOrdinal("UNSPSC")),
+                UNSPSCDescription = reader.GetString(reader.GetOrdinal("Description")),
+                CreatedAt = reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
+                IsEnabled = reader.GetBoolean(reader.GetOrdinal("IsEnabled"))
+            };
+            result.Add(rawMaterial);
+        }
+
+        return result;
+    }
+
+    public async Task<IEnumerable<GetRawMaterialDTO>> GetByFilterAsync(
+        string queryString, CancellationToken cancellationToken = default)
+    {
+        var result = new List<GetRawMaterialDTO>();
+        string sp = "rawmaterials.usp_GetRawMaterialsByFilter";
+
+        using SqlCommand command = new(sp, _connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.Add(new SqlParameter("@queryString", SqlDbType.NVarChar, 255));
 
         using SqlDataReader reader = await command.ExecuteReaderAsync(cancellationToken);
         while (await reader.ReadAsync(cancellationToken))

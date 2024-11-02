@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetAllRawMaterials;
+using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetRawMaterialsByFilter;
 using System.ComponentModel;
 
 namespace MW.SAXSAY.RawMaterials.Presentation.WinForm;
@@ -105,9 +106,18 @@ public partial class frmRawMaterialManagement : Form
         throw new NotImplementedException();
     }
 
-    private  void txtTextToSearch_KeyPress(object sender, KeyPressEventArgs e)
+    private async void txtTextToSearch_KeyPress(object sender, KeyPressEventArgs e)
     {
-        throw new NotImplementedException();
+        if (e.KeyChar != (char)Keys.Enter) return;
+        try
+        {
+            await SearchRawMaterials();
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
     }
     #endregion
 
@@ -129,46 +139,7 @@ public partial class frmRawMaterialManagement : Form
     }
 
     /// <summary>
-    /// Get raw materials
-    /// </summary>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    private async Task<IEnumerable<GetRawMaterialDTO>> GetRawMaterials(CancellationToken cancellationToken = default)
-    {
-        string queryString = txtTextToSearch.Text.Trim();
-        if (string.IsNullOrWhiteSpace(queryString)) {
-            return await GetAllRawMaterials(cancellationToken);
-        }
-        else {
-            // TODO: pending implementation for filter
-            return [];
-        }
-    }
-
-    private IEnumerable<GetRawMaterialDTO> GetRawMaterialsByFilter(string queryString)
-    {
-        throw new NotImplementedException();
-    }
-
-    private async Task<IEnumerable<GetRawMaterialDTO>> GetAllRawMaterials(
-        CancellationToken cancellationToken = default)
-    {
-        var queryResult = await _sender
-           .Send(new GetAllRawMaterialsQuery(), cancellationToken);
-
-        if (queryResult.IsFailure || queryResult.Value == null)
-        {
-            MessageBox.Show(
-                "Obtener Materias Prima:",
-                "Ocurrió un error al intentar obtener la lista de Materias Prima.",
-                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            return [];
-        }
-        return queryResult.Value;
-    }
-
-    /// <summary>
-    /// 
+    /// Configure data grid behaviors
     /// </summary>
     private void ConfigDataGridBehaviors()
     {
@@ -184,16 +155,59 @@ public partial class frmRawMaterialManagement : Form
     }
 
     /// <summary>
-    /// Retrieve Raw Materials
+    /// Get all Raw Materials from persistence
     /// </summary>
-    /// <param name="queryText"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    /// <exception cref="InvalidOperationException"></exception>
-    private Task<IEnumerable<GetRawMaterialDTO>> GetRawMaterials(
-        string queryText, CancellationToken cancellationToken = default)
+    private async Task<IEnumerable<GetRawMaterialDTO>> GetAllRawMaterials(
+        CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        var queryResult = await _sender
+           .Send(new GetAllRawMaterialsQuery(), cancellationToken);
+
+        if (queryResult.IsFailure || queryResult.Value == null)
+        {
+            MessageBox.Show(
+                "Obtener Materias Prima:",
+                "Ocurrió un error al obtener lista de Materias Prima.",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return [];
+        }
+        return queryResult.Value;
+    }
+
+    /// <summary>
+    /// Get raw materials
+    /// </summary>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    private async Task<IEnumerable<GetRawMaterialDTO>> GetRawMaterials(
+        CancellationToken cancellationToken = default)
+    {
+        string queryString = txtTextToSearch.Text.Trim();
+        if (string.IsNullOrWhiteSpace(queryString))
+        { return await GetAllRawMaterials(cancellationToken); }
+        else
+        { return await GetRawMaterialsByFilter(queryString, cancellationToken); }
+    }
+
+    private async Task<IEnumerable<GetRawMaterialDTO>> GetRawMaterialsByFilter(
+        string queryString, CancellationToken cancellationToken = default)
+    {
+        var queryResult = await _sender.Send(
+            new GetRawMaterialsByFilterQuery(queryString),
+            cancellationToken);
+
+        if (queryResult.IsFailure || queryResult.Value == null)
+        {
+            MessageBox.Show(
+              "Buscar Materias Prima:",
+              "Ocurrió un error al buscar Materias Prima.",
+              MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return [];
+        }
+
+        return queryResult.Value;
     }
 
     /// <summary>
