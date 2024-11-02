@@ -83,6 +83,38 @@ public partial class frmRawMaterialManagement : Form
         }
     }
 
+    private void btnEnable_Click(object sender, EventArgs e)
+    {
+        if (dgvRawMaterials.SelectedRows.Count > 0 &&
+           dgvRawMaterials.SelectedRows[0].Index >= 0)
+        {
+            var dialogResult = MessageBox.Show(
+                "Deshabilitar Materias Prima:",
+                "¿Está seguro de habilitar la(s) Materia(s) Prima seleccionada(s)?",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.No) return;
+
+            List<GetRawMaterialDTO> rawMaterialsSelected = [];
+            foreach (DataGridViewRow row in dgvRawMaterials.SelectedRows)
+            {
+                if (row.DataBoundItem is GetRawMaterialDTO rawMaterial)
+                {
+                    rawMaterial.IsEnabled = true;
+                    rawMaterialsSelected.Add(rawMaterial);
+                }
+            }
+
+            dgvRawMaterials.Refresh();
+        }
+        else
+        {
+            MessageBox.Show(
+                "Habilitar Materia(s) Prima:",
+                "Primero debe seleccionar al menos un elemento para habilitar.",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
+
     private void btnRemove_Click(object sender, EventArgs e)
     {
         if (dgvRawMaterials.SelectedRows.Count > 0 &&
@@ -111,6 +143,7 @@ public partial class frmRawMaterialManagement : Form
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
+
     private async void btnSearch_Click(object sender, EventArgs e)
     {
         try
@@ -152,7 +185,7 @@ public partial class frmRawMaterialManagement : Form
         Close();
     }
 
-    private  void tsmiSave_Click(object sender, EventArgs e)
+    private void tsmiSave_Click(object sender, EventArgs e)
     {
         throw new NotImplementedException();
     }

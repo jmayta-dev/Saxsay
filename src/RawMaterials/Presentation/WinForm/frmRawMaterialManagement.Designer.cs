@@ -35,6 +35,7 @@
             btnDisable = new Button();
             tabRawMaterials = new TabControl();
             tpRawMaterials = new TabPage();
+            btnEnable = new Button();
             dgvRawMaterials = new DataGridView();
             colId = new DataGridViewTextBoxColumn();
             colName = new DataGridViewTextBoxColumn();
@@ -122,6 +123,7 @@
             // 
             // tpRawMaterials
             // 
+            tpRawMaterials.Controls.Add(btnEnable);
             tpRawMaterials.Controls.Add(dgvRawMaterials);
             tpRawMaterials.Controls.Add(btnDisable);
             tpRawMaterials.Controls.Add(btnAdd);
@@ -133,6 +135,21 @@
             tpRawMaterials.TabIndex = 0;
             tpRawMaterials.Text = "Materia Prima";
             tpRawMaterials.UseVisualStyleBackColor = true;
+            // 
+            // btnEnable
+            // 
+            btnEnable.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnEnable.Image = Properties.Resources.CheckBoxChecked;
+            btnEnable.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEnable.Location = new Point(673, 327);
+            btnEnable.Name = "btnEnable";
+            btnEnable.Size = new Size(84, 26);
+            btnEnable.TabIndex = 20;
+            btnEnable.Text = "Habilitar";
+            btnEnable.TextAlign = ContentAlignment.MiddleRight;
+            btnEnable.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEnable.UseVisualStyleBackColor = true;
+            btnEnable.Click += btnEnable_Click;
             // 
             // dgvRawMaterials
             // 
@@ -392,5 +409,6 @@
         private DataGridViewTextBoxColumn colCreatedAt;
         private DataGridViewTextBoxColumn colUpdatedAt;
         private DataGridViewCheckBoxColumn colIsEnabled;
+        private Button btnEnable;
     }
 }
