@@ -1,6 +1,7 @@
 using Microsoft.Data.SqlClient;
 using MW.SAXSAY.RawMaterials.Application.Contracts;
 using MW.SAXSAY.RawMaterials.Persistence.SQLServer.Context;
+using System.Data;
 
 namespace MW.SAXSAY.RawMaterials.Persistence.SQLServer.Repositories;
 
@@ -28,6 +29,7 @@ public class UnitOfWorkRawMaterial : IUnitOfWorkRawMaterial
     public UnitOfWorkRawMaterial(RawMaterialDbContext context)
     {
         _connection = context.CreateConnection;
+        _connection.Open();
     }
     #endregion
 
@@ -38,7 +40,9 @@ public class UnitOfWorkRawMaterial : IUnitOfWorkRawMaterial
         {
             if (disposing)
             {
-                
+                // handle connection
+                if (_connection.State == ConnectionState.Open) _connection.Close();
+                _connection.Dispose();
             }
             _disposed = true;
         }
@@ -48,6 +52,11 @@ public class UnitOfWorkRawMaterial : IUnitOfWorkRawMaterial
     {
         Dispose(true);
         GC.SuppressFinalize(this);
+    }
+
+    ~UnitOfWorkRawMaterial()
+    {
+        Dispose(false);
     }
     #endregion
 }
