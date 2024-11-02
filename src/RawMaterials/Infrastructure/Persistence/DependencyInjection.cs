@@ -9,13 +9,8 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddPersistenceLayer(this IServiceCollection services)
     {
-        services.AddServices();
-        return services;
-    }
-
-    private static void AddServices(this IServiceCollection services)
-    {
-        services.AddSingleton<RawMaterialDbContext>();
-        services.AddTransient<IUnitOfWorkRawMaterial, UnitOfWorkRawMaterial>();
+        return services
+            .AddSingleton<RawMaterialDbContext>()
+            .AddTransient<IUnitOfWorkRawMaterial, UnitOfWorkRawMaterial>();
     }
 }
