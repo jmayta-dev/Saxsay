@@ -83,6 +83,34 @@ public partial class frmRawMaterialManagement : Form
         }
     }
 
+    private void btnRemove_Click(object sender, EventArgs e)
+    {
+        if (dgvRawMaterials.SelectedRows.Count > 0 &&
+             dgvRawMaterials.SelectedRows[0].Index >= 0)
+        {
+            var dialogResult = MessageBox.Show(
+               "Eliminar Materia(s) Prima:",
+               "¿Está seguro de eliminar la(s) Materia(s) Prima seleccionada(s)?",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.No) return;
+
+            // TODO: implemnt a validation to avoid removing raw materials that are in use
+            foreach (DataGridViewRow row in dgvRawMaterials.SelectedRows)
+            {
+                if (row.DataBoundItem is GetRawMaterialDTO rawMaterial)
+                { _rawMaterials.Remove(rawMaterial); }
+            }
+
+            dgvRawMaterials.Refresh();
+        }
+        else
+        {
+            MessageBox.Show(
+                "Eliminar Materia(s) Prima:",
+                "Primero debe seleccionar al menos un elemento para eliminar.",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
     private async void btnSearch_Click(object sender, EventArgs e)
     {
         try
@@ -99,11 +127,6 @@ public partial class frmRawMaterialManagement : Form
     {
         var rawMaterials = await GetRawMaterials();
         BindRawMaterialsDataGridView(rawMaterials);
-    }
-
-    private void btnRemove_Click(object sender, EventArgs e)
-    {
-        throw new NotImplementedException();
     }
 
     private void dgvRawMaterials_KeyPress(object sender, KeyPressEventArgs e)
