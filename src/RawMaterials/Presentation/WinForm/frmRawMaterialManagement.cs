@@ -347,7 +347,7 @@ public partial class frmRawMaterialManagement : Form
     private async Task SaveChanges(CancellationToken cancellationToken = default)
     {
         var rawMaterialsForInsert = _rawMaterialsForInsert.Select(_mapper.Map<RegisterRawMaterialDTO>);
-        var rawMaterialsForUpdate = _rawMaterialsForUpdate.Select(_mapper.Map<UpdateRawMaterialDTO>);
+        
         var insertionTask = await _sender.Send(new RegisterRawMaterialCommand(rawMaterialsForInsert), cancellationToken);
 
         MessageBox.Show(
