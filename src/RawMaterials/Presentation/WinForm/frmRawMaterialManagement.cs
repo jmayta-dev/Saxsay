@@ -339,9 +339,6 @@ public partial class frmRawMaterialManagement : Form
     private async Task SearchRawMaterials()
     {
         _rawMaterials.Clear();
-        _rawMaterialsForInsert.Clear();
-        _rawMaterialsForUpdate.Clear();
-        _rawMaterialsForDelete.Clear();
 
         List<GetRawMaterialDTO> retrievedRawMaterials =
             (await GetRawMaterials()).ToList();
