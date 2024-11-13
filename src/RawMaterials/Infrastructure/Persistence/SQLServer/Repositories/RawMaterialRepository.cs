@@ -43,6 +43,37 @@ public class RawMaterialRepository : IRawMaterialRepository
     #endregion
 
     #region Methods
+    //
+    // public
+    //
+
+    public async Task<bool> DeleteRawMaterial(
+          string rawMaterialId,
+          CancellationToken cancellationToken = default)
+    {
+        ValidateTransactionInstance();
+
+        sbyte returnedValue;
+        string sp = "rawmaterials.usp_RemoveRawMaterial";
+
+        using SqlCommand command = new(sp, _connection, _transaction);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.Add(new SqlParameter
+        {
+            ParameterName = "@id",
+            Size = 24,
+            SqlDbType = SqlDbType.Char,
+            Value = rawMaterialId
+        });
+        returnedValue = Convert.ToSByte(
+            await command.ExecuteScalarAsync(cancellationToken));
+
+        if (returnedValue != 0)
+        { return false; }
+        else
+        { return true; }
+    }
+
     public async Task<IEnumerable<GetRawMaterialDTO>> GetAllAsync(
         CancellationToken cancellationToken = default)
     {

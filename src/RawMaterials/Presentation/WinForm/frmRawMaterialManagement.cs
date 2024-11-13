@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using MW.SAXSAY.RawMaterials.Application.DTO;
+using MW.SAXSAY.RawMaterials.Application.UseCases.Commands.RegisterRawMaterials;
+using MW.SAXSAY.RawMaterials.Application.UseCases.Commands.RemoveRawMaterials;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetAllRawMaterials;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetRawMaterialsByFilter;
 using MW.SAXSAY.Shared.Helpers;
@@ -20,6 +22,7 @@ public partial class frmRawMaterialManagement : Form
     // privates
     //
     private readonly BindingList<RawMaterialDTO> _rawMaterials = [];
+    private readonly List<DeleteRawMaterialDTO> _rawMaterialsForDelete = [];
     private readonly List<RawMaterialDTO> _rawMaterialsForInsert = [];
     //
     // publics
@@ -59,8 +62,8 @@ public partial class frmRawMaterialManagement : Form
             dgvRawMaterials.SelectedRows[0].Index >= 0)
         {
             var dialogResult = MessageBox.Show(
-                "Deshabilitar Materias Prima:",
                 "¿Está seguro de deshabilitar la(s) Materia(s) Prima seleccionada(s)?",
+                "Deshabilitar Materias Prima:",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No) return;
 
@@ -79,8 +82,8 @@ public partial class frmRawMaterialManagement : Form
         else
         {
             MessageBox.Show(
-                "Deshabilitar Materia(s) Prima:",
                 "Primero debe seleccionar al menos un elemento para deshabilitar.",
+                "Deshabilitar Materia(s) Prima:",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
@@ -91,8 +94,8 @@ public partial class frmRawMaterialManagement : Form
            dgvRawMaterials.SelectedRows[0].Index >= 0)
         {
             var dialogResult = MessageBox.Show(
-                "Deshabilitar Materias Prima:",
                 "¿Está seguro de habilitar la(s) Materia(s) Prima seleccionada(s)?",
+                "Deshabilitar Materias Prima:",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No) return;
 
@@ -111,16 +114,15 @@ public partial class frmRawMaterialManagement : Form
         else
         {
             MessageBox.Show(
-                "Habilitar Materia(s) Prima:",
                 "Primero debe seleccionar al menos un elemento para habilitar.",
+                "Habilitar Materia(s) Prima:",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
     private void btnRemove_Click(object sender, EventArgs e)
     {
-        if (dgvRawMaterials.SelectedRows.Count > 0 &&
-             dgvRawMaterials.SelectedRows[0].Index >= 0)
+        if (dgvRawMaterials.SelectedRows.Count > 0)
         {
             var dialogResult = MessageBox.Show(
                "¿Está seguro de eliminar la(s) Materia(s) Prima seleccionada(s)?",
@@ -138,6 +140,12 @@ public partial class frmRawMaterialManagement : Form
                 // raw material caching management
                 if (rawMaterial.CreatedAt == null)
                 { _rawMaterialsForInsert.RemoveAll(r => r.Id == rawMaterial.Id); }
+                else
+                {
+                    // ensure remove from updating list
+                    _rawMaterialsForUpdate.RemoveAll(r => r.Id == rawMaterial.Id);
+                    _rawMaterialsForDelete.Add(_mapper.Map<DeleteRawMaterialDTO>(rawMaterial));
+            }
             }
 
             dgvRawMaterials.Refresh();
@@ -163,10 +171,10 @@ public partial class frmRawMaterialManagement : Form
         }
     }
 
-    private async Task SearchRawMaterials()
+    private void dgvRawMaterials_CurrentCellDirtyStateChanged(object sender, EventArgs e)
     {
-        var rawMaterials = await GetRawMaterials();
-        BindRawMaterialsDataGridView(rawMaterials);
+        if (dgvRawMaterials.IsCurrentCellDirty)
+        { dgvRawMaterials.CommitEdit(DataGridViewDataErrorContexts.Commit); }
     }
 
     private void dgvRawMaterials_KeyPress(object sender, KeyPressEventArgs e)
@@ -191,9 +199,9 @@ public partial class frmRawMaterialManagement : Form
         Close();
     }
 
-    private void tsmiSave_Click(object sender, EventArgs e)
+    private async void tsmiSave_Click(object sender, EventArgs e)
     {
-        throw new NotImplementedException();
+        await SaveChanges();
     }
 
     private async void txtTextToSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -245,6 +253,17 @@ public partial class frmRawMaterialManagement : Form
     private void BindRawMaterialsDataGridView(IEnumerable<RawMaterialDTO> rawMaterials)
     {
         dgvRawMaterials.DataSource = rawMaterials;
+    }
+
+    /// <summary>
+    /// Clear form controls
+    /// </summary>
+    private void ClearControls()
+    {
+        _rawMaterials.Clear();
+
+        dgvRawMaterials.DataSource = null;
+        txtTextToSearch.Text = string.Empty;
     }
 
     /// <summary>
@@ -328,6 +347,21 @@ public partial class frmRawMaterialManagement : Form
     }
 
     /// <summary>
+    /// Get data grid view selected rows
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerable<RawMaterialDTO> GetSelectedRows()
+    {
+        if (dgvRawMaterials.SelectedRows.Count <= 0) yield break;
+
+        foreach (DataGridViewRow row in dgvRawMaterials.SelectedRows)
+        {
+            if (row.DataBoundItem is RawMaterialDTO rawMaterialDto)
+            { yield return rawMaterialDto; }
+        }
+    }
+
+    /// <summary>
     /// Initialize form controls
     /// </summary>
     private void InitializeControls()
@@ -346,9 +380,23 @@ public partial class frmRawMaterialManagement : Form
 
     private async Task SaveChanges(CancellationToken cancellationToken = default)
     {
+        // collect lists
         var rawMaterialsForInsert = _rawMaterialsForInsert.Select(_mapper.Map<RegisterRawMaterialDTO>);
+        var rawMaterialsForDelete = _rawMaterialsForDelete.Select(_mapper.Map<DeleteRawMaterialDTO>);
         
-        var insertionTask = await _sender.Send(new RegisterRawMaterialCommand(rawMaterialsForInsert), cancellationToken);
+        var insertionTask = _sender.Send(new RegisterRawMaterialCommand(rawMaterialsForInsert), cancellationToken);
+        var deletionTask = _sender.Send(new RemoveRawMaterialsCommand(rawMaterialsForDelete), cancellationToken);
+
+        var results = await Task.WhenAll(insertionTask, deletionTask);
+
+        if (results.Any(r => r.IsFailure))
+        {
+            MessageBox.Show(
+                "Ocurrió un problema al grabar los cambios.",
+                "Grabar Cambios:",
+                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            return;
+        }
 
         MessageBox.Show(
             "Cambios grabados correctamente.",
@@ -357,6 +405,7 @@ public partial class frmRawMaterialManagement : Form
 
         await SearchRawMaterials();
     }
+
     /// <summary>
     /// Bind the search result into data grid view
     /// </summary>
