@@ -20,6 +20,7 @@ public partial class frmRawMaterialManagement : Form
     // privates
     //
     private readonly BindingList<RawMaterialDTO> _rawMaterials = [];
+    private readonly List<RawMaterialDTO> _rawMaterialsForInsert = [];
     //
     // publics
     //
@@ -122,16 +123,21 @@ public partial class frmRawMaterialManagement : Form
              dgvRawMaterials.SelectedRows[0].Index >= 0)
         {
             var dialogResult = MessageBox.Show(
-               "Eliminar Materia(s) Prima:",
                "¿Está seguro de eliminar la(s) Materia(s) Prima seleccionada(s)?",
+               "Eliminar Materia(s) Prima:",
                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No) return;
 
+            List<RawMaterialDTO> selectedRawMaterials = GetSelectedRows().ToList();
+
             // TODO: implemnt a validation to avoid removing raw materials that are in use
-            foreach (DataGridViewRow row in dgvRawMaterials.SelectedRows)
+            foreach (var rawMaterial in selectedRawMaterials)
             {
-                if (row.DataBoundItem is GetRawMaterialDTO rawMaterial)
-                { _rawMaterials.Remove(rawMaterial); }
+                _rawMaterials.Remove(rawMaterial);
+
+                // raw material caching management
+                if (rawMaterial.CreatedAt == null)
+                { _rawMaterialsForInsert.RemoveAll(r => r.Id == rawMaterial.Id); }
             }
 
             dgvRawMaterials.Refresh();
@@ -139,8 +145,8 @@ public partial class frmRawMaterialManagement : Form
         else
         {
             MessageBox.Show(
-                "Eliminar Materia(s) Prima:",
                 "Primero debe seleccionar al menos un elemento para eliminar.",
+                "Eliminar Materia(s) Prima:",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
@@ -220,6 +226,13 @@ public partial class frmRawMaterialManagement : Form
             IsEnabled = true
         };
         _rawMaterials.Add(newRawMaterial);
+
+        // add new raw material to insertion list
+        if (!_rawMaterialsForInsert.Exists(r => r.Id == newRawMaterial.Id))
+        {
+            _rawMaterialsForInsert.Add(newRawMaterial);
+        }
+
         dgvRawMaterials.CurrentCell = dgvRawMaterials
             .Rows[new Index(1, true)]
             .Cells[colName.Index];
@@ -331,6 +344,19 @@ public partial class frmRawMaterialManagement : Form
         InitializeControls();
     }
 
+    private async Task SaveChanges(CancellationToken cancellationToken = default)
+    {
+        var rawMaterialsForInsert = _rawMaterialsForInsert.Select(_mapper.Map<RegisterRawMaterialDTO>);
+        var rawMaterialsForUpdate = _rawMaterialsForUpdate.Select(_mapper.Map<UpdateRawMaterialDTO>);
+        var insertionTask = await _sender.Send(new RegisterRawMaterialCommand(rawMaterialsForInsert), cancellationToken);
+
+        MessageBox.Show(
+            "Cambios grabados correctamente.",
+            "Grabar Cambios:",
+            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        await SearchRawMaterials();
+    }
     /// <summary>
     /// Bind the search result into data grid view
     /// </summary>
@@ -338,6 +364,7 @@ public partial class frmRawMaterialManagement : Form
     private async Task SearchRawMaterials()
     {
         _rawMaterials.Clear();
+        _rawMaterialsForInsert.Clear();
 
         List<GetRawMaterialDTO> retrievedRawMaterials =
             (await GetRawMaterials()).ToList();

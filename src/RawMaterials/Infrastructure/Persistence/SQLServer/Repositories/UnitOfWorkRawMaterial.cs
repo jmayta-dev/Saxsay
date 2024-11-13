@@ -30,18 +30,65 @@ public class UnitOfWorkRawMaterial : IUnitOfWorkRawMaterial
     {
         _connection = context.CreateConnection;
         _connection.Open();
+        _transaction = _connection.BeginTransaction();
+    }
+    #endregion
+
+    #region Methods
+    public async Task BeginTransactionAsync(CancellationToken cancellationToken = default)
+    {
+        _transaction ??= (SqlTransaction)await _connection
+                .BeginTransactionAsync(cancellationToken);
+    }
+
+    public async Task RollbackAsync(CancellationToken cancellationToken = default)
+    {
+        if (_transaction != null)
+        {
+            await _transaction.RollbackAsync(cancellationToken);
+            await _transaction.DisposeAsync();
+        }
+    }
+
+    public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
+    {
+        await _transaction.CommitAsync(cancellationToken);
     }
     #endregion
 
     #region Disposable Support
+    protected virtual async Task DisposeAsync(bool disposing)
+    {
+        if (!_disposed)
+        {
+            if (disposing)
+            {
+                // handle transaction
+                if (_transaction != null)
+                { await _transaction.DisposeAsync(); }
+
+                // handle connection
+                if (_connection.State == ConnectionState.Open)
+                { _connection.Close(); }
+                await _connection.DisposeAsync();
+
+            }
+            _disposed = true;
+        }
+    }
+
     protected virtual void Dispose(bool disposing)
     {
         if (!_disposed)
         {
             if (disposing)
             {
+                // handle transaction
+                _transaction?.Dispose();
+
                 // handle connection
-                if (_connection.State == ConnectionState.Open) _connection.Close();
+                if (_connection.State == ConnectionState.Open)
+                { _connection.Close(); }
                 _connection.Dispose();
             }
             _disposed = true;

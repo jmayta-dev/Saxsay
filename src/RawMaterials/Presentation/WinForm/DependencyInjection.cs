@@ -29,7 +29,7 @@ namespace MW.SAXSAY.RawMaterials.Presentation.WinForm
         /// <returns></returns>
         private static IServiceCollection AddPresentationLayer(this IServiceCollection services)
         {
-            return services.AddSingleton<frmRawMaterialManagement>();
+            return services.AddTransient<frmRawMaterialManagement>();
         }
         #endregion
     }

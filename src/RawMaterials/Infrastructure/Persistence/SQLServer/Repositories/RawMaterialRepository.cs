@@ -1,6 +1,7 @@
 using Microsoft.Data.SqlClient;
 using MW.SAXSAY.RawMaterials.Application.Contracts;
 using MW.SAXSAY.RawMaterials.Application.DTO;
+using MW.SAXSAY.RawMaterials.Domain.Entities;
 using System.Data;
 
 namespace MW.SAXSAY.RawMaterials.Persistence.SQLServer.Repositories;
@@ -36,6 +37,7 @@ public class RawMaterialRepository : IRawMaterialRepository
     public RawMaterialRepository(SqlConnection connection, SqlTransaction transaction)
         : this(connection)
     {
+        ArgumentNullException.ThrowIfNull(transaction, nameof(transaction));
         _transaction = transaction;
     }
     #endregion
@@ -58,8 +60,9 @@ public class RawMaterialRepository : IRawMaterialRepository
                 Id = reader.GetString(reader.GetOrdinal("Id")),
                 Name = reader.GetString(reader.GetOrdinal("Name")),
                 UNSPSC = reader.GetString(reader.GetOrdinal("UNSPSC")),
-                UNSPSCDescription = reader.GetString(reader.GetOrdinal("Description")),
-                CreatedAt = reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
+                UNSPSCDescription = reader.GetString(reader.GetOrdinal("UNSPSCDescription")),
+                CreatedAt = reader.GetDateTimeOffset(reader.GetOrdinal("CreatedAt")),
+                UpdatedAt = reader.GetDateTimeOffset(reader.GetOrdinal("UpdatedAt")),
                 IsEnabled = reader.GetBoolean(reader.GetOrdinal("IsEnabled"))
             };
             result.Add(rawMaterial);
@@ -102,6 +105,45 @@ public class RawMaterialRepository : IRawMaterialRepository
         }
 
         return result;
+    }
+
+    public async Task<bool> InsertRawMaterial(
+          RawMaterial rawMaterial, CancellationToken cancellationToken = default)
+    {
+        ValidateTransactionInstance();
+        sbyte returnedValue;
+        string sp = "rawmaterials.usp_InsertRawMaterial";
+
+        using SqlCommand command = new(sp, _connection, _transaction);
+        command.CommandType = CommandType.StoredProcedure;
+
+        // parameters
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@id", SqlDbType.Char, 24, rawMaterial.Id));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@name", SqlDbType.NVarChar, 255, rawMaterial.Name));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@unspsc", SqlDbType.Char, 11, rawMaterial.UNSPSC));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@unspscDescription", SqlDbType.NVarChar, 400, rawMaterial.UNSPSCDescription));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@createdAt", SqlDbType.DateTimeOffset, rawMaterial.CreatedAt));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@updatedAt", SqlDbType.DateTimeOffset, rawMaterial.UpdatedAt));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@isEnabled", SqlDbType.Bit, rawMaterial.IsEnabled));
+
+        returnedValue = Convert.ToSByte(await command.ExecuteScalarAsync(cancellationToken));
+        if (returnedValue == 0)
+        { return true; }
+        else
+        { return false; }
     }
     #endregion
 }
