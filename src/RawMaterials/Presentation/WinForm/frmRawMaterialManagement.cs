@@ -171,13 +171,12 @@ public partial class frmRawMaterialManagement : Form
 
     private void frmRawMaterialManagement_Load(object sender, EventArgs e)
     {
-        try
-        {
             LoadControls();
         }
-        catch (Exception)
+
+    private void tsmiClose_Click(object sender, EventArgs e)
         {
-            throw;
+        Close();
         }
     }
 
