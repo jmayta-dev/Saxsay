@@ -2,6 +2,7 @@ using Microsoft.Data.SqlClient;
 using MW.SAXSAY.RawMaterials.Application.Contracts;
 using MW.SAXSAY.RawMaterials.Application.DTO;
 using MW.SAXSAY.RawMaterials.Domain.Entities;
+using MW.SAXSAY.Shared.Persistence;
 using System.Data;
 
 namespace MW.SAXSAY.RawMaterials.Persistence.SQLServer.Repositories;
@@ -175,6 +176,52 @@ public class RawMaterialRepository : IRawMaterialRepository
         { return true; }
         else
         { return false; }
+    }
+
+    public async Task<bool> UpdateRawMaterial(
+          RawMaterial rawMaterial
+        , CancellationToken cancellationToken = default)
+    {
+        ValidateTransactionInstance();
+        sbyte returnedValue;
+        string sp = "rawmaterials.usp_UpdateRawMaterial";
+
+        using SqlCommand command = new(sp, _connection, _transaction);
+        command.CommandType = CommandType.StoredProcedure;
+
+        // parameters
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@id", SqlDbType.Char, 24, rawMaterial.Id));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@name", SqlDbType.NVarChar, 255, rawMaterial.Name));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@unspsc", SqlDbType.Char, 11, rawMaterial.UNSPSC));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@unspscDescription", SqlDbType.NVarChar, 400, rawMaterial.UNSPSCDescription));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@updatedAt", SqlDbType.DateTimeOffset, rawMaterial.UpdatedAt));
+
+        command.Parameters.Add(SqlParameterBuilder.Empty().Build(
+            "@isEnabled", SqlDbType.Bit, rawMaterial.IsEnabled));
+
+        returnedValue = Convert.ToSByte(await command.ExecuteScalarAsync(cancellationToken));
+        if (returnedValue == 0)
+        { return true; }
+        else
+        { return false; }
+    }
+    //
+    // private
+    //
+    private void ValidateTransactionInstance()
+    {
+        if (_transaction == null)
+            throw new InvalidOperationException(
+                "Transaction is required for transactional operations.");
     }
     #endregion
 }

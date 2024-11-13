@@ -3,10 +3,13 @@ using MediatR;
 using MW.SAXSAY.RawMaterials.Application.DTO;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Commands.RegisterRawMaterials;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Commands.RemoveRawMaterials;
+using MW.SAXSAY.RawMaterials.Application.UseCases.Commands.UpdateRawMaterials;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetAllRawMaterials;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetRawMaterialsByFilter;
+using MW.SAXSAY.Shared.Extensions;
 using MW.SAXSAY.Shared.Helpers;
 using System.ComponentModel;
+using System.Text;
 
 namespace MW.SAXSAY.RawMaterials.Presentation.WinForm;
 
@@ -24,6 +27,7 @@ public partial class frmRawMaterialManagement : Form
     private readonly BindingList<RawMaterialDTO> _rawMaterials = [];
     private readonly List<DeleteRawMaterialDTO> _rawMaterialsForDelete = [];
     private readonly List<RawMaterialDTO> _rawMaterialsForInsert = [];
+    private readonly List<RawMaterialDTO> _rawMaterialsForUpdate = [];
     //
     // publics
     //
@@ -58,8 +62,7 @@ public partial class frmRawMaterialManagement : Form
 
     private void btnDisable_Click(object sender, EventArgs e)
     {
-        if (dgvRawMaterials.SelectedRows.Count > 0 &&
-            dgvRawMaterials.SelectedRows[0].Index >= 0)
+        if (dgvRawMaterials.SelectedRows.Count > 0)
         {
             var dialogResult = MessageBox.Show(
                 "¿Está seguro de deshabilitar la(s) Materia(s) Prima seleccionada(s)?",
@@ -67,16 +70,9 @@ public partial class frmRawMaterialManagement : Form
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No) return;
 
-            List<GetRawMaterialDTO> rawMaterialsSelected = [];
-            foreach (DataGridViewRow row in dgvRawMaterials.SelectedRows)
-            {
-                if (row.DataBoundItem is GetRawMaterialDTO rawMaterial)
-                {
-                    rawMaterial.IsEnabled = false;
-                    rawMaterialsSelected.Add(rawMaterial);
-                }
-            }
-
+            var selectedRawMaterials = GetSelectedRows().ToList();
+            // disabling
+            EnableOrDisableRawMaterials(selectedRawMaterials, enable: false);
             dgvRawMaterials.Refresh();
         }
         else
@@ -90,8 +86,7 @@ public partial class frmRawMaterialManagement : Form
 
     private void btnEnable_Click(object sender, EventArgs e)
     {
-        if (dgvRawMaterials.SelectedRows.Count > 0 &&
-           dgvRawMaterials.SelectedRows[0].Index >= 0)
+        if (dgvRawMaterials.SelectedRows.Count > 0)
         {
             var dialogResult = MessageBox.Show(
                 "¿Está seguro de habilitar la(s) Materia(s) Prima seleccionada(s)?",
@@ -99,16 +94,9 @@ public partial class frmRawMaterialManagement : Form
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.No) return;
 
-            List<GetRawMaterialDTO> rawMaterialsSelected = [];
-            foreach (DataGridViewRow row in dgvRawMaterials.SelectedRows)
-            {
-                if (row.DataBoundItem is GetRawMaterialDTO rawMaterial)
-                {
-                    rawMaterial.IsEnabled = true;
-                    rawMaterialsSelected.Add(rawMaterial);
-                }
-            }
-
+            var selectedRawMaterials = GetSelectedRows().ToList();
+            // enabling
+            EnableOrDisableRawMaterials(selectedRawMaterials, enable: true);
             dgvRawMaterials.Refresh();
         }
         else
@@ -145,7 +133,7 @@ public partial class frmRawMaterialManagement : Form
                     // ensure remove from updating list
                     _rawMaterialsForUpdate.RemoveAll(r => r.Id == rawMaterial.Id);
                     _rawMaterialsForDelete.Add(_mapper.Map<DeleteRawMaterialDTO>(rawMaterial));
-            }
+                }
             }
 
             dgvRawMaterials.Refresh();
@@ -161,13 +149,22 @@ public partial class frmRawMaterialManagement : Form
 
     private async void btnSearch_Click(object sender, EventArgs e)
     {
-        try
+        await SearchRawMaterials();
+    }
+
+    private void dgvRawMaterials_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+    {
+        if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
         {
-            await SearchRawMaterials();
-        }
-        catch (Exception ex)
-        {
-            throw;
+            var selectedRawMaterial = dgvRawMaterials.CurrentRow.DataBoundItem as RawMaterialDTO;
+            if (selectedRawMaterial == null) return;
+
+            // raw material caching management
+            if (selectedRawMaterial.CreatedAt != null &&
+                !_rawMaterialsForUpdate.Exists(r => r.Id == selectedRawMaterial.Id))
+            {
+                _rawMaterialsForUpdate.Add(selectedRawMaterial);
+            }
         }
     }
 
@@ -185,18 +182,30 @@ public partial class frmRawMaterialManagement : Form
 
     private void frmRawMaterialManagement_Load(object sender, EventArgs e)
     {
-            LoadControls();
-        }
-
-    private void tsmiClose_Click(object sender, EventArgs e)
-        {
-        Close();
-        }
+        LoadControls();
     }
 
     private void tsmiClose_Click(object sender, EventArgs e)
     {
         Close();
+    }
+
+    private void tsmiHistory_Click(object sender, EventArgs e)
+    {
+        StringBuilder changeLog = new();
+        foreach (var rawMaterial in _rawMaterialsForInsert)
+        {
+            changeLog.AppendLine($"- {rawMaterial.Id} : {rawMaterial.Name} (insertar)");
+        }
+        foreach (var rawMaterial in _rawMaterialsForUpdate)
+        {
+            changeLog.AppendLine($"- {rawMaterial.Id} : {rawMaterial.Name} (actualizar)");
+        }
+        foreach (var rawMaterial in _rawMaterialsForDelete)
+        {
+            changeLog.AppendLine($"- {rawMaterial.Id} : {rawMaterial.Name} (eliminar)");
+        }
+        MessageBox.Show(changeLog.ToString(), "Change Log:");
     }
 
     private async void tsmiSave_Click(object sender, EventArgs e)
@@ -207,15 +216,7 @@ public partial class frmRawMaterialManagement : Form
     private async void txtTextToSearch_KeyPress(object sender, KeyPressEventArgs e)
     {
         if (e.KeyChar != (char)Keys.Enter) return;
-        try
-        {
-            await SearchRawMaterials();
-        }
-        catch (Exception ex)
-        {
-
-            throw;
-        }
+        await SearchRawMaterials();
     }
     #endregion
 
@@ -283,6 +284,25 @@ public partial class frmRawMaterialManagement : Form
     }
 
     /// <summary>
+    /// Enable or disable raw materials selected in the data grid view
+    /// </summary>
+    private void EnableOrDisableRawMaterials(
+        IEnumerable<RawMaterialDTO> rawMaterialsDto, bool enable = true)
+    {
+        foreach (var rawMaterial in rawMaterialsDto)
+        {
+            rawMaterial.IsEnabled = enable;
+            // add raw materials which has creation date and doesn't exists in
+            // the list to update
+            if (rawMaterial.CreatedAt != null &&
+                !_rawMaterialsForUpdate.Exists(r => r.Id == rawMaterial.Id))
+            {
+                _rawMaterialsForUpdate.Add(rawMaterial);
+            }
+        }
+    }
+
+    /// <summary>
     /// Get all Raw Materials (without filter)
     /// </summary>
     /// <param name="cancellationToken"></param>
@@ -296,7 +316,6 @@ public partial class frmRawMaterialManagement : Form
         if (queryResult.IsFailure || queryResult.Value == null)
         {
             MessageBox.Show(
-                "Obtener Materias Prima:",
                 "Ocurrió un error al obtener lista de Materias Prima.",
                 "Obtener Materias Prima:",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -336,7 +355,6 @@ public partial class frmRawMaterialManagement : Form
         if (queryResult.IsFailure || queryResult.Value == null)
         {
             MessageBox.Show(
-              "Buscar Materias Prima:",
               "Ocurrió un error al buscar Materias Prima.",
               "Buscar Materias Prima:",
               MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -382,12 +400,14 @@ public partial class frmRawMaterialManagement : Form
     {
         // collect lists
         var rawMaterialsForInsert = _rawMaterialsForInsert.Select(_mapper.Map<RegisterRawMaterialDTO>);
+        var rawMaterialsForUpdate = _rawMaterialsForUpdate.Select(_mapper.Map<UpdateRawMaterialDTO>);
         var rawMaterialsForDelete = _rawMaterialsForDelete.Select(_mapper.Map<DeleteRawMaterialDTO>);
-        
+
         var insertionTask = _sender.Send(new RegisterRawMaterialCommand(rawMaterialsForInsert), cancellationToken);
+        var updatingTask = _sender.Send(new UpdateRawMaterialCommand(rawMaterialsForUpdate), cancellationToken);
         var deletionTask = _sender.Send(new RemoveRawMaterialsCommand(rawMaterialsForDelete), cancellationToken);
 
-        var results = await Task.WhenAll(insertionTask, deletionTask);
+        var results = await Task.WhenAll(insertionTask, updatingTask, deletionTask);
 
         if (results.Any(r => r.IsFailure))
         {

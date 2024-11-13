@@ -211,7 +211,6 @@
             colUNSPSC.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             colUNSPSC.HeaderText = "Código (UNSPSC)";
             colUNSPSC.Name = "colUNSPSC";
-            colUNSPSC.Width = 80;
             // 
             // colUNSPSCDescription
             // 
@@ -291,6 +290,7 @@
             tsmiHistory.Name = "tsmiHistory";
             tsmiHistory.Size = new Size(186, 22);
             tsmiHistory.Text = "Historial de cambios...";
+            tsmiHistory.Click += tsmiHistory_Click;
             // 
             // msSeparator
             // 
@@ -449,6 +449,5 @@
         private DataGridViewTextBoxColumn colCreatedAt;
         private DataGridViewTextBoxColumn colUpdatedAt;
         private DataGridViewCheckBoxColumn colIsEnabled;
-        private Button btnEnable;
     }
 }
