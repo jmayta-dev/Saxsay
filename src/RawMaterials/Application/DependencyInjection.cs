@@ -8,9 +8,10 @@ public static class DependencyInjection
     {
         var applicationAssembly = typeof(DependencyInjection).Assembly;
 
-        services.AddAutoMapper(applicationAssembly);
-        services.AddMediatR(config =>
-            config.RegisterServicesFromAssemblies(applicationAssembly));
+        services
+            .AddAutoMapper(applicationAssembly)
+            .AddMediatR(
+            config => config.RegisterServicesFromAssemblies(applicationAssembly));
 
         return services;
     }

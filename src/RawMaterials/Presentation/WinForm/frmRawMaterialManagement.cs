@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using MW.SAXSAY.RawMaterials.Application.DTO;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetAllRawMaterials;
 using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetRawMaterialsByFilter;
 using MW.SAXSAY.Shared.Helpers;
@@ -18,7 +19,7 @@ public partial class frmRawMaterialManagement : Form
     //
     // privates
     //
-    private readonly BindingList<GetRawMaterialDTO> _rawMaterials = [];
+    private readonly BindingList<RawMaterialDTO> _rawMaterials = [];
     //
     // publics
     //
@@ -211,7 +212,7 @@ public partial class frmRawMaterialManagement : Form
     /// </summary>
     private void AddRawMaterial()
     {
-        var newRawMaterial = new GetRawMaterialDTO()
+        var newRawMaterial = new RawMaterialDTO
         {
             Id = IdentifierGenerators.TimePlusRandomGenerator.Generate(),
             Name = string.Empty,
@@ -229,7 +230,7 @@ public partial class frmRawMaterialManagement : Form
     /// <summary>
     /// Bind data to data grid
     /// </summary>
-    private void BindRawMaterialsDataGridView(IEnumerable<GetRawMaterialDTO> rawMaterials)
+    private void BindRawMaterialsDataGridView(IEnumerable<RawMaterialDTO> rawMaterials)
     {
         dgvRawMaterials.DataSource = rawMaterials;
     }
@@ -251,7 +252,7 @@ public partial class frmRawMaterialManagement : Form
     }
 
     /// <summary>
-    /// Get all Raw Materials from persistence
+    /// Get all Raw Materials (without filter)
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
@@ -266,6 +267,7 @@ public partial class frmRawMaterialManagement : Form
             MessageBox.Show(
                 "Obtener Materias Prima:",
                 "Ocurrió un error al obtener lista de Materias Prima.",
+                "Obtener Materias Prima:",
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return [];
         }
@@ -287,6 +289,12 @@ public partial class frmRawMaterialManagement : Form
         { return await GetRawMaterialsByFilter(queryString, cancellationToken); }
     }
 
+    /// <summary>
+    /// Get raw materials by filter
+    /// </summary>
+    /// <param name="queryString"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     private async Task<IEnumerable<GetRawMaterialDTO>> GetRawMaterialsByFilter(
         string queryString, CancellationToken cancellationToken = default)
     {
@@ -299,6 +307,7 @@ public partial class frmRawMaterialManagement : Form
             MessageBox.Show(
               "Buscar Materias Prima:",
               "Ocurrió un error al buscar Materias Prima.",
+              "Buscar Materias Prima:",
               MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             return [];
         }
@@ -321,6 +330,28 @@ public partial class frmRawMaterialManagement : Form
     {
         ConfigDataGridBehaviors();
         InitializeControls();
+    }
+
+    /// <summary>
+    /// Bind the search result into data grid view
+    /// </summary>
+    /// <returns></returns>
+    private async Task SearchRawMaterials()
+    {
+        _rawMaterials.Clear();
+        _rawMaterialsForInsert.Clear();
+        _rawMaterialsForUpdate.Clear();
+        _rawMaterialsForDelete.Clear();
+
+        List<GetRawMaterialDTO> retrievedRawMaterials =
+            (await GetRawMaterials()).ToList();
+
+        // map from GetRawMaterialDTO to RawMaterialDTO for displaying
+        List<RawMaterialDTO> rawMaterials = retrievedRawMaterials
+            .Select(_mapper.Map<RawMaterialDTO>).ToList();
+
+        _rawMaterials.AddRange(rawMaterials);
+        BindRawMaterialsDataGridView(_rawMaterials);
     }
     #endregion
 }

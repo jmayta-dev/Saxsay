@@ -6,4 +6,6 @@ public interface IRawMaterialRepository
 {
     Task<IEnumerable<GetRawMaterialDTO>> GetAllAsync(
         CancellationToken cancellationToken = default);
+    Task<IEnumerable<GetRawMaterialDTO>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<IEnumerable<GetRawMaterialDTO>> GetByFilterAsync(string queryString, CancellationToken cancellationToken = default);
 }

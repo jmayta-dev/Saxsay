@@ -1,6 +1,6 @@
 using Microsoft.Data.SqlClient;
 using MW.SAXSAY.RawMaterials.Application.Contracts;
-using MW.SAXSAY.RawMaterials.Application.UseCases.Queries.GetAllRawMaterials;
+using MW.SAXSAY.RawMaterials.Application.DTO;
 using System.Data;
 
 namespace MW.SAXSAY.RawMaterials.Persistence.SQLServer.Repositories;
@@ -47,7 +47,7 @@ public class RawMaterialRepository : IRawMaterialRepository
         var result = new List<GetRawMaterialDTO>();
         string sp = "rawmaterials.usp_GetAllRawMaterials";
 
-        using SqlCommand command = new(sp, _connection);
+        using SqlCommand command = new(sp, _connection, _transaction);
         command.CommandType = CommandType.StoredProcedure;
 
         using SqlDataReader reader = await command.ExecuteReaderAsync(cancellationToken);
@@ -69,14 +69,21 @@ public class RawMaterialRepository : IRawMaterialRepository
     }
 
     public async Task<IEnumerable<GetRawMaterialDTO>> GetByFilterAsync(
-        string queryString, CancellationToken cancellationToken = default)
+          string queryString
+        , CancellationToken cancellationToken = default)
     {
         var result = new List<GetRawMaterialDTO>();
         string sp = "rawmaterials.usp_GetRawMaterialsByFilter";
 
         using SqlCommand command = new(sp, _connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.Add(new SqlParameter("@queryString", SqlDbType.NVarChar, 255));
+        command.Parameters.Add(new SqlParameter
+        {
+            ParameterName = "@queryString",
+            Size = 255,
+            SqlDbType = SqlDbType.NVarChar,
+            Value = queryString
+        });
 
         using SqlDataReader reader = await command.ExecuteReaderAsync(cancellationToken);
         while (await reader.ReadAsync(cancellationToken))
@@ -88,6 +95,7 @@ public class RawMaterialRepository : IRawMaterialRepository
                 UNSPSC = reader.GetString(reader.GetOrdinal("UNSPSC")),
                 UNSPSCDescription = reader.GetString(reader.GetOrdinal("Description")),
                 CreatedAt = reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
+                UpdatedAt = reader.GetDateTime(reader.GetOrdinal("UpdatedAt")),
                 IsEnabled = reader.GetBoolean(reader.GetOrdinal("IsEnabled"))
             };
             result.Add(rawMaterial);
