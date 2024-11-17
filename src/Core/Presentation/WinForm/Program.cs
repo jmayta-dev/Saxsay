@@ -27,7 +27,7 @@ static class Program
         ApplicationConfiguration.Initialize();
 
         // get login form
-        var startupForm = host.Services.GetRequiredService<frmLogin>();
+        var startupForm = host.Services.GetRequiredService<frmMdiSaxsay>();
         // execute login form as entrypoint
         System.Windows.Forms.Application.Run(startupForm);
     }

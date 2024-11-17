@@ -14,15 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="appsettings.Development.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
   </ItemGroup>
