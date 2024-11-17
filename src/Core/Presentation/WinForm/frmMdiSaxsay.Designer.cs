@@ -69,13 +69,13 @@ partial class frmMdiSaxsay
         // tslblUser
         // 
         tslblUser.Name = "tslblUser";
-        tslblUser.Size = new Size(83, 17);
-        tslblUser.Text = "Administrador";
+        tslblUser.Size = new Size(55, 17);
+        tslblUser.Text = "[UserRol]";
         // 
         // tslblSpace
         // 
         tslblSpace.Name = "tslblSpace";
-        tslblSpace.Size = new Size(832, 17);
+        tslblSpace.Size = new Size(860, 17);
         tslblSpace.Spring = true;
         // 
         // tslblVersion
@@ -212,8 +212,8 @@ partial class frmMdiSaxsay
         // tslblBreadcrumb
         // 
         tslblBreadcrumb.Name = "tslblBreadcrumb";
-        tslblBreadcrumb.Size = new Size(72, 22);
-        tslblBreadcrumb.Text = "Breadcrumb";
+        tslblBreadcrumb.Size = new Size(80, 22);
+        tslblBreadcrumb.Text = "[Breadcrumb]";
         tslblBreadcrumb.Visible = false;
         // 
         // tsddbUserOptions
@@ -223,8 +223,8 @@ partial class frmMdiSaxsay
         tsddbUserOptions.Image = (Image)resources.GetObject("tsddbUserOptions.Image");
         tsddbUserOptions.ImageTransparentColor = Color.Magenta;
         tsddbUserOptions.Name = "tsddbUserOptions";
-        tsddbUserOptions.Size = new Size(111, 22);
-        tsddbUserOptions.Text = "Jheison Mayta";
+        tsddbUserOptions.Size = new Size(137, 22);
+        tsddbUserOptions.Text = "[UserDisplayName]";
         // 
         // tsmiLogout
         // 
@@ -246,6 +246,7 @@ partial class frmMdiSaxsay
         Name = "frmMdiSaxsay";
         StartPosition = FormStartPosition.CenterScreen;
         Text = "SAXSAY ::: Sistema de Gestión de Recetas";
+        WindowState = FormWindowState.Maximized;
         FormClosing += frmMdiSaxsay_FormClosing;
         Load += frmMdiSaxsay_Load;
         ssrMdi.ResumeLayout(false);

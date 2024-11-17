@@ -10,11 +10,12 @@ public partial class frmMdiSaxsay : Form
     //
     // private
     //
-    private SaxsayCloseReason _closeReason;
-    private Dictionary<string, string> _menuForms = [];
-    private TreeNodeCollection _menuOptions;
     private bool _menuShowed = true;
+    private Dictionary<string, string> _menuForms = [];
+    private readonly Dictionary<string, Form> _openForms = [];
     private readonly IServiceProvider _services;
+    private SaxsayCloseReason _closeReason;
+    private TreeNodeCollection _menuOptions;
     //
     // public
     //
@@ -92,14 +93,53 @@ public partial class frmMdiSaxsay : Form
 
     private void tvwMenu_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
     {
-        throw new NotImplementedException();
+        if (_menuForms.TryGetValue(e.Node.Name, out string? formName))
+        {
+            Type? formType = Type.GetType(formName) ??
+                throw new Exception($"No se pudo encontrar el formulario: {e.Node.Text}");
+
+            // Verificar si el formulario ya está abierto
+            if (_openForms.TryGetValue(formName, out Form? value))
+            {
+                Form openForm = value;
+                openForm.Activate(); // Traer el formulario al frente si ya está abierto
+            }
+            else
+            {
+                if (_services.GetRequiredService(formType) is Form formToShow)
+                {
+                    formToShow.MdiParent = this;
+                    formToShow.FormClosed += (sender, eventArgs) => _openForms.Remove(formName);
+                    _openForms[formName] = formToShow;
+                    formToShow.Show();
+                }
+            }
+        }
     }
     #endregion
 
     #region Methods
     private void LoadMenu()
     {
-        // TODO: Implement the menu load logic
+        TreeNode[] principalNodes = [
+            new TreeNode
+        {
+            Name = "rawMaterial",
+            Text = "Materia Prima",
+            ImageIndex = imgMdi.Images.IndexOfKey("WindowsForm.png"),
+            SelectedImageIndex = imgMdi.Images.IndexOfKey("WindowsForm.png")
+        }
+        ];
+
+        tvwMenu.Nodes.Clear();
+
+        string iconName = imgMdi.Images.Keys
+            .Cast<string>()
+            .Where(s => s == "WindowsForm.png")
+            .FirstOrDefault() ?? string.Empty;
+
+        tvwMenu.Nodes.AddRange(principalNodes);
+        _menuForms.Add("rawMaterial", "MW.SAXSAY.RawMaterials.Presentation.WinForm.frmRawMaterialManagement, MW.SAXSAY.RawMaterials.Presentation.WinForm");
     }
 
     /// <summary>
