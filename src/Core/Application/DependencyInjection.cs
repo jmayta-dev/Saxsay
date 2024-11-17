@@ -20,6 +20,6 @@ public static class DependencyInjection
     private static IServiceCollection AddServices(this IServiceCollection services)
     {
         return services
-            .AddScoped<IIdentifierGenerationService, TimestampedIdentifierGenerationService>()
+            .AddScoped<IIdentifierGenerationService, TimestampedIdentifierGenerationService>();
     }
 }

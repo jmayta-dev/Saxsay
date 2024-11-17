@@ -29,10 +29,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\Core\MW.SAXSAY.Shared.csproj" />
-    <ProjectReference Include="..\..\..\Shared\Presentation\WinForm\MW.SAXSAY.Shared.WinForm.csproj" />
     <ProjectReference Include="..\..\Application\MW.SAXSAY.RawMaterials.Application.csproj" />
-    <ProjectReference
-      Include="..\..\Infrastructure\Persistence\MW.SAXSAY.RawMaterials.Persistence.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Persistence\MW.SAXSAY.RawMaterials.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
