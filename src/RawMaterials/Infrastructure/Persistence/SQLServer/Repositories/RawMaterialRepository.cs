@@ -110,7 +110,7 @@ public class RawMaterialRepository : IRawMaterialRepository
         var result = new List<GetRawMaterialDTO>();
         string sp = "rawmaterials.usp_GetRawMaterialsByFilter";
 
-        using SqlCommand command = new(sp, _connection);
+        using SqlCommand command = new(sp, _connection, _transaction);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.Add(new SqlParameter
         {
@@ -128,9 +128,9 @@ public class RawMaterialRepository : IRawMaterialRepository
                 Id = reader.GetString(reader.GetOrdinal("Id")),
                 Name = reader.GetString(reader.GetOrdinal("Name")),
                 UNSPSC = reader.GetString(reader.GetOrdinal("UNSPSC")),
-                UNSPSCDescription = reader.GetString(reader.GetOrdinal("Description")),
-                CreatedAt = reader.GetDateTime(reader.GetOrdinal("CreatedAt")),
-                UpdatedAt = reader.GetDateTime(reader.GetOrdinal("UpdatedAt")),
+                UNSPSCDescription = reader.GetString(reader.GetOrdinal("UNSPSCDescription")),
+                CreatedAt = reader.GetDateTimeOffset(reader.GetOrdinal("CreatedAt")),
+                UpdatedAt = reader.GetDateTimeOffset(reader.GetOrdinal("UpdatedAt")),
                 IsEnabled = reader.GetBoolean(reader.GetOrdinal("IsEnabled"))
             };
             result.Add(rawMaterial);
