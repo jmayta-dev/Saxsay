@@ -497,3 +497,5 @@ TODO
 
 # SonarCloud
 .sonarqube/
+
+docker-compose.yml
