@@ -1,0 +1,26 @@
+@host=http://localhost:5208
+
+# listar todos
+GET {{host}}
+Content-Type: application/json
+###
+
+# agregar raw material
+GET {{host}}/rawMaterials/list
+Content-Type: application/json
+###
+
+
+# agregar raw material
+POST {{host}}/rawMaterials/register
+Content-Type: application/json
+
+{
+    "id": "001732956524403-Nsr9DLZP",
+    "name": "test",
+    "unspsc": "test",
+    "unspscDescription": "aaaaaaaaaa",
+    "updatedAt": "2024-11-30T08:46:00+00:00",
+    "isEnabled": true
+}
+###
