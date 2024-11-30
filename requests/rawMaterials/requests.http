@@ -1,15 +1,14 @@
 @host=http://localhost:5208
 
-# listar todos
+# raiz
 GET {{host}}
 Content-Type: application/json
 ###
 
-# agregar raw material
+# listar todos
 GET {{host}}/rawMaterials/list
 Content-Type: application/json
 ###
-
 
 # agregar raw material
 POST {{host}}/rawMaterials/register
