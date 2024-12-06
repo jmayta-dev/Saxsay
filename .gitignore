@@ -483,9 +483,14 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-# SonarQube
-.sonarqube
+# Others
+*.drawio.bkp
 
 # Saxsay
 *.Development.json
 TODO
+
+# SonarCloud
+.sonarqube/
+
+docker-compose.yml

@@ -1,0 +1,16 @@
+name: saxsay
+
+services:
+  mssql:
+    build: .
+    environment:
+      - ACCEPT_EULA=${ACCEPT_EULA}
+      - MSSQL_SA_PASSWORD=${MSSQL_SA_PASSWORD}
+    ports:
+      - "1433:1433"
+    volumes:
+      - /g/TMP:/mnt/tmp
+      - /g/TMP/saxsay/mssql/data:/var/opt/mssql/data
+      - /g/TMP/saxsay/mssql/log:/var/opt/mssql/log
+      - /g/TMP/saxsay/mssql/secrets:/var/opt/mssql/secrets
+
